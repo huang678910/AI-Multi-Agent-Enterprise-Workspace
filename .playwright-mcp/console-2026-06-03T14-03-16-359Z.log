@@ -1,0 +1,2 @@
+[      -9ms] [ERROR] Failed to load resource: the server responded with a status of 422 (Unprocessable Entity) @ http://localhost:8002/api/v1/workspaces/fe691715-9b77-4b77-a198-a40e45edee11/reports/50ab9934-6a36-4fed-861a-a97bb0398cd4/download:0
+[      67ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8002/favicon.ico:0

@@ -1,135 +1,93 @@
-# CLAUDE.md
+# CLAUDE.md — AI Multi-Agent Enterprise Workspace
 
-Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
+## 项目技术栈
 
-**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
-
-## 1. Think Before Coding
-
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
-
-Before implementing:
-- State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
-- If something is unclear, stop. Name what's confusing. Ask.
-
-## 2. Simplicity First
-
-**Minimum code that solves the problem. Nothing speculative.**
-
-- No features beyond what was asked.
-- No abstractions for single-use code.
-- No "flexibility" or "configurability" that wasn't requested.
-- No error handling for impossible scenarios.
-- If you write 200 lines and it could be 50, rewrite it.
-
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
-
-## 3. Surgical Changes
-
-**Touch only what you must. Clean up only your own mess.**
-
-When editing existing code:
-- Don't "improve" adjacent code, comments, or formatting.
-- Don't refactor things that aren't broken.
-- Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it - don't delete it.
-
-When your changes create orphans:
-- Remove imports/variables/functions that YOUR changes made unused.
-- Don't remove pre-existing dead code unless asked.
-
-The test: Every changed line should trace directly to the user's request.
-
-## 4. Goal-Driven Execution
-
-**Define success criteria. Loop until verified.**
-
-Transform tasks into verifiable goals:
-- "Add validation" → "Write tests for invalid inputs, then make them pass"
-- "Fix the bug" → "Write a test that reproduces it, then make it pass"
-- "Refactor X" → "Ensure tests pass before and after"
-
-For multi-step tasks, state a brief plan:
-```
-1. [Step] → verify: [check]
-2. [Step] → verify: [check]
-3. [Step] → verify: [check]
-```
-
-Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+| 层 | 技术 |
+|----|------|
+| 前端 | Next.js 14 + React 18 + TypeScript + TailwindCSS + shadcn/ui |
+| 后端 | FastAPI + Pydantic v2 + SQLAlchemy Async + Alembic |
+| Agent | LangGraph + LangChain + DeepSeek API |
+| 数据 | PostgreSQL + pgvector + Redis |
+| 部署 | Docker Compose + Nginx |
 
 ---
 
-**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+## 行为准则
 
-<!-- superpowers-zh:begin (do not edit between these markers) -->
-# Superpowers-ZH 中文增强版
+1. **Think Before Coding** — 先陈述假设，不确定就提问。有多种解释时列出来，不要沉默选择。
+2. **Simplicity First** — 只写被要求的功能。不做未要求的抽象、不做过度灵活、不处理不可能发生的错误。
+3. **Surgical Changes** — 只改必须改的，不改相邻的、不重构没坏的东西。匹配原有风格。
+4. **Goal-Driven** — 每个任务都定义可验证的成功标准。声称完成前必须跑验证命令。
 
-本项目已配置全局 superpowers-zh 技能框架（21 个 skills，含 web-design-engineer）。
+---
 
-## 核心规则
+## Skill 调用规则（收到任务时强制执行）
 
-1. **收到任务时，先检查是否有匹配的 skill** — 哪怕只有 1% 的可能性也要检查
-2. **设计先于编码** — 收到功能需求时，先用 brainstorming skill 做需求分析
-3. **测试先于实现** — 写代码前先写测试（TDD）
-4. **验证先于完成** — 声称完成前必须运行验证命令
+```
+复杂功能/新特性 → /brainstorming（设计先于编码）
+多步骤任务   → /brainstorming → /writing-plans → /executing-plans
+写任何代码   → /tdd（测试先于实现）
+遇到 bug     → /systematic-debugging（禁止直接猜测修复）
+独立并行任务 → /dispatching-parallel-agents
+功能完成     → /verification-before-completion（验证先于声称完成）
+合并前       → /requesting-code-review
+安全审计     → 加载 trailofbits-security + owasp
+前端 UI      → 加载 web-design-engineer 或 frontend-design
+Git 隔离     → /using-git-worktrees
+```
 
-## 如何使用
+**关键原则：哪怕只有 1% 的可能匹配某个 skill，也必须调用 `Skill` 工具加载它。**
 
-Skills 现已全局安装在 `~/.claude/skills/`，所有项目均可使用。当任务匹配某个 skill 时，使用 `Skill` 工具加载对应 skill 并严格遵循其流程。绝不要用 Read 工具读取 SKILL.md 文件。
+---
 
-如果你认为哪怕只有 1% 的可能性某个 skill 适用于你正在做的事情，你必须调用该 skill 检查。
-<!-- superpowers-zh:end -->
+## MCP 工具使用指南（按场景自动选择）
 
-<!-- web-design-engineer:begin (do not edit between these markers) -->
-# Web Design Engineer
+| 场景 | 使用 MCP |
+|------|---------|
+| 读取/写入项目文件 | **filesystem** |
+| 解析 PDF/Word/PPT/图片 | **mineru**（调用 `parse_documents`，无需确认） |
+| 文档入库、知识库搜索 | **knowledge**（`kb_ingest_document` / `kb_search`） |
+| 浏览器测试、E2E、截图 | **playwright**（`@playwright/mcp`） |
+| 复杂多步推理 | **sequential-thinking** |
+| 查库/框架最新文档 | **context7**（优先于 WebSearch） |
+| PR/Issue/代码仓库 | **github** |
+| 数据库查询/表结构 | **postgres**（连接 `ai_workspace`） |
+| 跨会话记忆 | **memory** |
 
-本项目已配置全局 web-design-engineer 技能（ConardLi/garden-skills）。
+---
 
-## 适用范围
+## Skills + MCP 协作模式
 
-✅ **使用此技能**：可视化前端交付物——网页、落地页、仪表盘、交互原型、HTML 幻灯片、CSS/JS 动画、数据可视化、UI 模型、设计系统
-❌ **不使用**：后端 API、CLI 工具、数据处理脚本、纯逻辑开发
+```
+需求分析    → Skill: brainstorming + MCP: context7（查最新方案）
+设计阶段    → Skill: design-an-interface + MCP: sequential-thinking
+编码实现    → Skill: tdd + MCP: filesystem + context7（库文档）
+测试        → Skill: tdd + MCP: playwright（E2E）+ postgres（数据验证）
+文档处理    → MCP: mineru（解析）→ knowledge（入库）
+调试        → Skill: systematic-debugging + MCP: sequential-thinking
+代码审查    → Skill: code-review + Skill: trailofbits-security
+部署前      → Skill: verification-before-completion + MCP: github
+```
 
-## 核心规则
+---
 
-1. **事实优先** — 涉及真实产品/品牌时，先用 WebSearch 验证，不要猜测
-2. **设计系统先于编码** — 编写代码前声明色彩、字体、间距、动效系统，等待用户确认
-3. **v0 草案先于完整构建** — 先用占位符构建可查看的草稿，用户确认方向后再完善
-4. **检查点真正等待** — 说"等待确认"时必须真的停止，不要说完立即继续编码
-5. **反 AI 陈词滥调** — 禁用紫粉渐变、Inter/Roboto 展示字体、emoji 图标（除非品牌使用）、伪造数据/Logo墙、SVG 人脸
-6. **品牌协议** — 真实 Logo/产品图 > 颜色色值 > 排版规范；绝不用 CSS 矩形替代真实图片
-7. **交付前验证** — 逐项核对检查清单，可选运行五维评审（理念一致性、视觉层次、工艺质量、功能性、原创性）
+## 项目特定约定
 
-## 如何使用
+- 后端 API 路由在 `backend/app/api/v1/`，遵循 FastAPI 惯例
+- Agent 定义在 `backend/app/agents/`，使用 LangGraph StateGraph
+- 数据库迁移用 Alembic：`cd backend && alembic upgrade head`
+- 前端页面在 `frontend/src/app/`，使用 Next.js 14 App Router
+- 环境变量通过 `settings.json` 的 `env` 字段注入，不创建 `.env` 文件
+- 提交信息用中文，遵循 Conventional Commits
+- 密码/Token 绝不硬编码，用 `${VAR}` 占位符
 
-当用户请求涉及可视化、交互式或前端产物时（即使没有明确说"HTML"或"网页"），使用 `Skill` 工具加载 `web-design-engineer` 并严格遵循其 7 步工作流。绝不自己猜测品牌或产品细节。
-<!-- web-design-engineer:end -->
+---
 
-<!-- frontend-design:begin (do not edit between these markers) -->
-# Frontend Design
+## 禁止事项
 
-本项目已配置全局 frontend-design 技能（Anthropic 官方）。
-
-## 适用范围
-
-✅ **使用此技能**：构建 Web 组件、页面、应用程序——网站、落地页、仪表盘、React 组件、HTML/CSS 布局、美化 Web UI
-
-## 核心规则
-
-1. **先定美学方向，再写代码** — 明确目的、受众、技术约束，选择一个大胆的美学方向（极简、极繁、复古未来、有机自然、奢华精致、俏皮、杂志编辑、野兽派、装饰艺术、柔和粉彩、工业实用……）
-2. **拒绝 AI 模板脸** — 禁用 Inter/Roboto/Arial 字体、白底紫渐变、可预测的卡片布局、千篇一律的设计
-3. **字体要有性格** — 选独特、有趣的字体；展示字体 + 正文字体搭配
-4. **色彩要有态度** — 主色 + 锐利强调色，胜过均匀分布的调色盘
-5. **动效要高光** — 集中精力做一次高影响力的页面载入动效（错开显现），胜过散落的微交互
-6. **布局要打破常规** — 不对称、重叠、对角线流动、打破网格、大量留白或受控密度
-7. **背景要有层次** — 渐变网格、噪点纹理、几何图案、多层透明度、戏剧阴影、自定义光标
-8. **不同项目不同风格** — 每次在明/暗主题、不同字体、不同审美间切换，不要趋同
-9. **复杂度匹配审美** — 极繁设计需要精致动画和效果；极简设计需要精准间距和排版细节
-
-## 如何使用
-
-当用户请求构建或美化任何 Web UI 时，使用 `Skill` 工具加载 `frontend-design`。提交一个大胆、独特的美学方向承诺，然后用精致的代码实现。
-<!-- frontend-design:end -->
+- ❌ 不先跑 `/brainstorming` 就开始大规模实现
+- ❌ 不写测试就直接写实现代码
+- ❌ 不跑验证就声称完成
+- ❌ 猜测库 API 而不调 `context7` 查文档
+- ❌ 直接修改 `~/.claude/settings.json` 里的 API Key / MCP 配置（用 CC Switch 管理）
+- ❌ 对用户上传的文件视而不见（立刻调 `mineru` 解析）

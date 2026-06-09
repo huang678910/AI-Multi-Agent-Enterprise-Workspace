@@ -1,14 +1,16 @@
-"""聊天 API — 会话管理 + SSE 流式对话"""
+"""聊天 API — 会话管理 + SSE 流式对话 + HTTP 降级"""
 
 import logging
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 
 from app.database import get_db
-from app.api.deps import get_current_user
+from app.api.deps import get_current_user, require_workspace_role
 from app.models.user import User
+from app.models.chat_session import ChatSession
 from app.schemas.chat import (
     ChatSessionCreate,
     ChatSessionResponse,
@@ -16,9 +18,9 @@ from app.schemas.chat import (
     MessageResponse,
     ChatStreamRequest,
 )
-from app.config import get_settings
 from app.services.chat_service import ChatService
 from app.services.llm_service import LLMService
+from app.core.exceptions import NotFoundException, ForbiddenException
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +33,8 @@ async def list_sessions(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
+    """列出当前工作区中当前用户的会话"""
+    await require_workspace_role(workspace_id, current_user, "viewer", db)
     sessions = await ChatService(db).list_sessions(workspace_id, current_user.id)
     return ChatSessionListResponse(
         sessions=[ChatSessionResponse.model_validate(s) for s in sessions],
@@ -45,6 +49,8 @@ async def create_session(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
+    """创建新会话"""
+    await require_workspace_role(workspace_id, current_user, "member", db)
     session = await ChatService(db).create_session(workspace_id, current_user.id, request.title)
     return ChatSessionResponse.model_validate(session)
 
@@ -56,6 +62,18 @@ async def delete_session(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
+    """删除会话（仅会话所有者或 admin 可操作）"""
+    await require_workspace_role(workspace_id, current_user, "viewer", db)
+    # 验证会话属于当前用户或用户是 admin
+    result = await db.execute(
+        select(ChatSession).where(ChatSession.id == session_id)
+    )
+    session = result.scalar_one_or_none()
+    if not session:
+        raise NotFoundException("Chat session not found")
+    if str(session.user_id) != str(current_user.id):
+        # 非所有者需要 admin 权限
+        await require_workspace_role(workspace_id, current_user, "admin", db)
     await ChatService(db).delete_session(session_id)
 
 
@@ -66,6 +84,15 @@ async def list_messages(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
+    """列出会话消息"""
+    await require_workspace_role(workspace_id, current_user, "viewer", db)
+    # 验证会话属于当前用户
+    result = await db.execute(
+        select(ChatSession).where(ChatSession.id == session_id)
+    )
+    session = result.scalar_one_or_none()
+    if not session or str(session.user_id) != str(current_user.id):
+        raise ForbiddenException("You can only view your own chat sessions")
     messages = await ChatService(db).list_messages(session_id)
     return [MessageResponse.model_validate(m) for m in messages]
 
@@ -77,10 +104,9 @@ async def stream_chat(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    """SSE 流式对话"""
-    import sys
-    print(f"!!! STREAM ENDPOINT HIT: ws={workspace_id} session={request.session_id}", flush=True)
-    logger.info(f"Chat stream: ws={workspace_id}, session={request.session_id}")
+    """SSE 流式对话（降级方案 — 主聊天请使用 WebSocket ws/chat）"""
+    await require_workspace_role(workspace_id, current_user, "member", db)
+    logger.info(f"Chat SSE stream: ws={workspace_id}, session={request.session_id}")
 
     svc = ChatService(db)
     await svc.save_message(
@@ -119,63 +145,31 @@ async def send_message(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    """非流式对话 — 返回完整 JSON 响应"""
-    from app.database import AsyncSessionLocal
-    from app.services.rag_service import RagService
+    """非流式对话 — HTTP 降级（通过 AgentOrchestrator 走多 Agent 路由）"""
+    await require_workspace_role(workspace_id, current_user, "member", db)
+    logger.info(f"Chat send: ws={workspace_id}, session={request.session_id}")
 
-    logger.info(f"Chat send: ws={workspace_id} session={request.session_id}")
+    from app.services.agent_orchestrator import AgentOrchestrator
 
-    svc = ChatService(db)
-    await svc.save_message(
-        session_id=request.session_id, role="user", content=request.message,
-    )
-    history = await svc.list_messages(request.session_id)
-
-    # RAG search (best-effort, 独立 session)
+    orchestrator = AgentOrchestrator(db=db, workspace_id=workspace_id, user=current_user)
+    full = ""
     sources = []
-    context = ""
     try:
-        async with AsyncSessionLocal() as s:
-            results = await RagService(s).search(
-                query=request.message, workspace_id=workspace_id, top_k=5,
-            )
-            for r in results:
-                sources.append({
-                    "filename": r.filename, "chunk_id": r.chunk_id, "similarity": r.similarity,
-                })
-            context = "\n\n---\n\n".join(
-                f"[Source: {r.filename}]\n{r.content}" for r in results
-            )
+        async for event_dict in orchestrator.run_stream(
+            session_id=request.session_id,
+            message=request.message,
+        ):
+            if event_dict["type"] == "token":
+                full += event_dict.get("content", "")
+            elif event_dict["type"] == "done":
+                full = event_dict.get("content", full)
+                sources = event_dict.get("sources", [])
+            elif event_dict["type"] == "error":
+                raise HTTPException(status_code=500, detail=event_dict.get("content", "Unknown error"))
+    except HTTPException:
+        raise
     except Exception as e:
-        logger.warning(f"RAG skipped: {e}")
+        logger.error(f"Send message error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
 
-    # Build LLM messages
-    llm_msgs = [{"role": "system", "content": "You are an AI assistant. Answer based on context if provided. Use Markdown."}]
-    if context:
-        llm_msgs.append({"role": "system", "content": f"Context from documents:\n\n{context}"})
-    for m in history[-20:]:
-        llm_msgs.append({"role": m.role.value, "content": m.content})
-
-    # Call DeepSeek
-    s = get_settings()
-    from openai import AsyncOpenAI
-    client = AsyncOpenAI(api_key=s.DEEPSEEK_API_KEY, base_url=s.DEEPSEEK_BASE_URL)
-    completion = await client.chat.completions.create(
-        model=s.LLM_MODEL, messages=llm_msgs, temperature=0.7, max_tokens=2048,
-    )
-    reply = completion.choices[0].message.content or ""
-
-    # Save assistant reply (独立 session)
-    async with AsyncSessionLocal() as save_session:
-        save_svc = ChatService(save_session)
-        await save_svc.save_message(
-            session_id=request.session_id, role="assistant", content=reply, sources=sources,
-        )
-        if len(history) <= 2:
-            title = request.message[:50]
-            if len(request.message) > 50:
-                title += "..."
-            await save_svc.update_session_title(request.session_id, title)
-        await save_session.commit()
-
-    return {"reply": reply, "sources": sources}
+    return {"reply": full or "No response generated.", "sources": sources}

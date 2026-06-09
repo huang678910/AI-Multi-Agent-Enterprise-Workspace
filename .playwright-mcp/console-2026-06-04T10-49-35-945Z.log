@@ -1,0 +1,247 @@
+[     813ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[    1351ms] [ERROR] Warning: Expected server HTML to contain a matching <%s> in <%s>.%s svg button 
+    at svg
+    at eval (webpack-internal:///(app-pages-browser)/./node_modules/lucide-react/dist/esm/Icon.mjs:23:11)
+    at eval (webpack-internal:///(app-pages-browser)/./node_modules/lucide-react/dist/esm/createLucideIcon.mjs:22:15)
+    at button
+    at div
+    at div
+    at div
+    at ChatPage (webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:33:78)
+    at ClientPageRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/client-page.js:14:11)
+    at InnerLayoutRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:243:11)
+    at RedirectErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:74:9)
+    at RedirectBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:82:11)
+    at NotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at LoadingBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:349:11)
+    at ErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:160:11)
+    at InnerScrollAndFocusHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:153:9)
+    at ScrollAndFocusHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:228:11)
+    at RenderFromTemplateContext (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/render-from-template-context.js:16:44)
+    at OuterLayoutRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:370:11)
+    at InnerLayoutRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:243:11)
+    at RedirectErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:74:9)
+    at RedirectBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:82:11)
+    at NotFoundErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:76:9)
+    at NotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at LoadingBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:349:11)
+    at ErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:160:11)
+    at InnerScrollAndFocusHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:153:9)
+    at ScrollAndFocusHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:228:11)
+    at RenderFromTemplateContext (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/render-from-template-context.js:16:44)
+    at OuterLayoutRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:370:11)
+    at main
+    at div
+    at AppLayout (webpack-internal:///(app-pages-browser)/./src/components/layout/AppLayout.tsx:13:11)
+    at body
+    at html
+    at RootLayout (Server)
+    at RedirectErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:74:9)
+    at RedirectBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:82:11)
+    at NotFoundErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:76:9)
+    at NotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at DevRootNotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/dev-root-not-found-boundary.js:33:11)
+    at ReactDevOverlay (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/ReactDevOverlay.js:87:9)
+    at HotReload (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:321:11)
+    at Router (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:207:11)
+    at ErrorBoundaryHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:113:9)
+    at ErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:160:11)
+    at AppRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:585:13)
+    at ServerRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:112:27)
+    at Root (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:117:11) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[    1360ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7040:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at HTMLUnknownElement.callCallback (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:20565:14)
+    at Object.invokeGuardedCallbackImpl (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:20614:16)
+    at invokeGuardedCallback (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:20689:29)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26949:7)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    1364ms] [ERROR] Warning: An error occurred during hydration. The server HTML was replaced with client content in <%s>. #document @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[    1401ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7040:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    1401ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7040:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    1402ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7040:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    1402ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7040:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    1402ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7040:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    1402ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7040:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    1402ms] Error: There was an error while hydrating. Because the error happened outside of a Suspense boundary, the entire root will switch to client rendering.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at updateHostRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16571:57)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18486:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopSync (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25464:5)
+    at renderRootSync (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25419:7)
+    at recoverFromConcurrentError (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24597:20)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24542:26)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    1572ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[    1895ms] [LOG] [WS] Connected @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:17
+[    1896ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[    1897ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[  141533ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  142494ms] [LOG] [Fast Refresh] done in 963ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  183852ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  184574ms] [LOG] [Fast Refresh] done in 722ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[ 7253647ms] [LOG] [WS] Closed: code=1006 reason= @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:42
+[ 7253663ms] [LOG] [WS] Reconnecting in 3000ms (attempt 1) @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:135
+[ 7256671ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 7259064ms] [ERROR] WebSocket connection to 'ws://localhost:8002/api/v1/ws/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxY2Q5YjA1OC1mZmVjLTRlZDYtYTY0MS0yOGRiYWE3MDZjMzkiLCJpYXQiOjE3ODA1NzAxMDMsImV4cCI6MTc4MDU3MzcwM30.kOEZ0BCE_HJY1ZrH_JFUW127ArbNQjkSgXrO2KhocJ8&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:15
+[ 7259068ms] [ERROR] [WS] Error — connection will close @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[ 7259099ms] [LOG] [WS] Closed: code=1006 reason= @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:42
+[ 7259099ms] [LOG] [WS] Reconnecting in 6000ms (attempt 2) @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:135
+[ 7265109ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 7267480ms] [ERROR] WebSocket connection to 'ws://localhost:8002/api/v1/ws/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxY2Q5YjA1OC1mZmVjLTRlZDYtYTY0MS0yOGRiYWE3MDZjMzkiLCJpYXQiOjE3ODA1NzAxMDMsImV4cCI6MTc4MDU3MzcwM30.kOEZ0BCE_HJY1ZrH_JFUW127ArbNQjkSgXrO2KhocJ8&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:15
+[ 7267481ms] [ERROR] [WS] Error — connection will close @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[ 7267482ms] [LOG] [WS] Closed: code=1006 reason= @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:42
+[ 7267483ms] [LOG] [WS] Reconnecting in 12000ms (attempt 3) @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:135
+[ 7279507ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 7282070ms] [ERROR] WebSocket connection to 'ws://localhost:8002/api/v1/ws/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxY2Q5YjA1OC1mZmVjLTRlZDYtYTY0MS0yOGRiYWE3MDZjMzkiLCJpYXQiOjE3ODA1NzAxMDMsImV4cCI6MTc4MDU3MzcwM30.kOEZ0BCE_HJY1ZrH_JFUW127ArbNQjkSgXrO2KhocJ8&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:15
+[ 7282071ms] [ERROR] [WS] Error — connection will close @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[ 7282072ms] [LOG] [WS] Closed: code=1006 reason= @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:42
+[ 7282072ms] [LOG] [WS] Reconnecting in 24000ms (attempt 4) @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:135
+[ 7306080ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 7306407ms] [ERROR] WebSocket connection to 'ws://localhost:8002/api/v1/ws/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxY2Q5YjA1OC1mZmVjLTRlZDYtYTY0MS0yOGRiYWE3MDZjMzkiLCJpYXQiOjE3ODA1NzAxMDMsImV4cCI6MTc4MDU3MzcwM30.kOEZ0BCE_HJY1ZrH_JFUW127ArbNQjkSgXrO2KhocJ8&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a' failed: Error during WebSocket handshake: Unexpected response code: 403 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:15
+[ 7306407ms] [ERROR] [WS] Error — connection will close @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[ 7306407ms] [LOG] [WS] Closed: code=1006 reason= @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:42
+[ 7306407ms] [LOG] [WS] Reconnecting in 30000ms (attempt 5) @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:135
+[ 7336411ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 7336737ms] [ERROR] WebSocket connection to 'ws://localhost:8002/api/v1/ws/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxY2Q5YjA1OC1mZmVjLTRlZDYtYTY0MS0yOGRiYWE3MDZjMzkiLCJpYXQiOjE3ODA1NzAxMDMsImV4cCI6MTc4MDU3MzcwM30.kOEZ0BCE_HJY1ZrH_JFUW127ArbNQjkSgXrO2KhocJ8&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a' failed: Error during WebSocket handshake: Unexpected response code: 403 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:15
+[ 7336737ms] [ERROR] [WS] Error — connection will close @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[ 7336737ms] [LOG] [WS] Closed: code=1006 reason= @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:42
+[ 7336737ms] [LOG] [WS] Reconnecting in 30000ms (attempt 6) @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:135
+[ 7366747ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 7367076ms] [ERROR] WebSocket connection to 'ws://localhost:8002/api/v1/ws/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxY2Q5YjA1OC1mZmVjLTRlZDYtYTY0MS0yOGRiYWE3MDZjMzkiLCJpYXQiOjE3ODA1NzAxMDMsImV4cCI6MTc4MDU3MzcwM30.kOEZ0BCE_HJY1ZrH_JFUW127ArbNQjkSgXrO2KhocJ8&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a' failed: Error during WebSocket handshake: Unexpected response code: 403 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:15
+[ 7367077ms] [ERROR] [WS] Error — connection will close @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[ 7367077ms] [LOG] [WS] Closed: code=1006 reason= @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:42
+[ 7367077ms] [LOG] [WS] Reconnecting in 30000ms (attempt 7) @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:135
+[ 7397092ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 7397413ms] [ERROR] WebSocket connection to 'ws://localhost:8002/api/v1/ws/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxY2Q5YjA1OC1mZmVjLTRlZDYtYTY0MS0yOGRiYWE3MDZjMzkiLCJpYXQiOjE3ODA1NzAxMDMsImV4cCI6MTc4MDU3MzcwM30.kOEZ0BCE_HJY1ZrH_JFUW127ArbNQjkSgXrO2KhocJ8&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a' failed: Error during WebSocket handshake: Unexpected response code: 403 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:15
+[ 7397413ms] [ERROR] [WS] Error — connection will close @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[ 7397414ms] [LOG] [WS] Closed: code=1006 reason= @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:42
+[ 7397414ms] [LOG] [WS] Reconnecting in 30000ms (attempt 8) @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:135
+[ 7427431ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 7427744ms] [ERROR] WebSocket connection to 'ws://localhost:8002/api/v1/ws/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxY2Q5YjA1OC1mZmVjLTRlZDYtYTY0MS0yOGRiYWE3MDZjMzkiLCJpYXQiOjE3ODA1NzAxMDMsImV4cCI6MTc4MDU3MzcwM30.kOEZ0BCE_HJY1ZrH_JFUW127ArbNQjkSgXrO2KhocJ8&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a' failed: Error during WebSocket handshake: Unexpected response code: 403 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:15
+[ 7427745ms] [ERROR] [WS] Error — connection will close @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[ 7427745ms] [LOG] [WS] Closed: code=1006 reason= @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:42
+[ 7427745ms] [LOG] [WS] Reconnecting in 30000ms (attempt 9) @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:135
+[ 7457751ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 7458066ms] [ERROR] WebSocket connection to 'ws://localhost:8002/api/v1/ws/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxY2Q5YjA1OC1mZmVjLTRlZDYtYTY0MS0yOGRiYWE3MDZjMzkiLCJpYXQiOjE3ODA1NzAxMDMsImV4cCI6MTc4MDU3MzcwM30.kOEZ0BCE_HJY1ZrH_JFUW127ArbNQjkSgXrO2KhocJ8&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a' failed: Error during WebSocket handshake: Unexpected response code: 403 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:15
+[ 7458066ms] [ERROR] [WS] Error — connection will close @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[ 7458067ms] [LOG] [WS] Closed: code=1006 reason= @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:42
+[ 7458067ms] [LOG] [WS] Reconnecting in 30000ms (attempt 10) @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:135
+[ 7488078ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 7488392ms] [ERROR] WebSocket connection to 'ws://localhost:8002/api/v1/ws/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxY2Q5YjA1OC1mZmVjLTRlZDYtYTY0MS0yOGRiYWE3MDZjMzkiLCJpYXQiOjE3ODA1NzAxMDMsImV4cCI6MTc4MDU3MzcwM30.kOEZ0BCE_HJY1ZrH_JFUW127ArbNQjkSgXrO2KhocJ8&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a' failed: Error during WebSocket handshake: Unexpected response code: 403 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:15
+[ 7488394ms] [ERROR] [WS] Error — connection will close @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[ 7488394ms] [LOG] [WS] Closed: code=1006 reason= @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:42
+[ 7488394ms] [LOG] [WS] Max reconnect attempts reached @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:129
+[ 7684466ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[ 7686073ms] [LOG] [Fast Refresh] done in 1606ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[ 9996198ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[ 9997296ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[ 9997636ms] [LOG] [Fast Refresh] done in 340ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[15508416ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[15509381ms] [LOG] [Fast Refresh] done in 967ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[15519816ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[15520401ms] [LOG] [Fast Refresh] done in 585ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[15532643ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[15532897ms] [LOG] [Fast Refresh] done in 253ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[15550524ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[15551243ms] [LOG] [Fast Refresh] done in 719ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[15573631ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[15573836ms] [LOG] [Fast Refresh] done in 204ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[15584706ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[15585258ms] [LOG] [Fast Refresh] done in 552ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[15597226ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[15597432ms] [LOG] [Fast Refresh] done in 206ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[15608402ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[15608592ms] [LOG] [Fast Refresh] done in 188ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43

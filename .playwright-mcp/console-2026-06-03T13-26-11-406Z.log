@@ -1,0 +1,42 @@
+[    4174ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[    4927ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[    6060ms] [LOG] [Fast Refresh] done in 1133ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[    6309ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3000/login:0
+[  878554ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  879832ms] [LOG] [Fast Refresh] done in 1277ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  880578ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=9b5b84f9-52c3-42ba-a303-3cdc996de56a&workspace_id=39015c0e-2f13-475d-b111-1cb9356dc0a2 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[  880911ms] [LOG] [WS] Connected @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:17
+[  880911ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[  880912ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[  923828ms] [LOG] [Chat] Agent status: Analyzing request... supervisor @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:153
+[  935243ms] [LOG] [Chat] Agent status: Agent: search search @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:153
+[  935309ms] [LOG] [Chat] Agent status: Searching knowledge base... search @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:153
+[  939757ms] [LOG] [Chat] Agent status: Web search completed search @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:153
+[ 1024641ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=7e2b9d23-6b08-44ea-a5be-dd9d3957bb50&workspace_id=39015c0e-2f13-475d-b111-1cb9356dc0a2 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 1025018ms] [LOG] [WS] Connected @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:17
+[ 1025021ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[ 1025024ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[ 1049200ms] [LOG] [Chat] Agent status: Analyzing request... supervisor @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:153
+[ 1050577ms] [LOG] [Chat] Agent status: Agent: sql sql @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:153
+[ 2126209ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=9b5b84f9-52c3-42ba-a303-3cdc996de56a&workspace_id=39015c0e-2f13-475d-b111-1cb9356dc0a2 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 2126536ms] [LOG] [WS] Connected @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:17
+[ 2126536ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[ 2126539ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[ 2130214ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=044d7bb3-f058-4bb2-82cc-8cb333d461f3&workspace_id=39015c0e-2f13-475d-b111-1cb9356dc0a2 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 2130538ms] [LOG] [WS] Connected @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:17
+[ 2130538ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[ 2130543ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[ 2132526ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=e6f906c4-6eac-4205-a272-8c215724ca23&workspace_id=39015c0e-2f13-475d-b111-1cb9356dc0a2 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 2132852ms] [LOG] [WS] Connected @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:17
+[ 2132852ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[ 2132855ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[ 2136853ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=39ded649-5f79-4479-b029-9ded999e0afc&workspace_id=39015c0e-2f13-475d-b111-1cb9356dc0a2 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 2137170ms] [LOG] [WS] Connected @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:17
+[ 2137170ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[ 2137175ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[ 2139401ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[ 2141391ms] [LOG] [Fast Refresh] done in 1989ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[ 2141681ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[ 2143079ms] [LOG] [Fast Refresh] done in 1398ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[ 2143630ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[ 2146055ms] [LOG] [Fast Refresh] done in 2425ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43

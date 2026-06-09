@@ -1,0 +1,61 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: AI
+      - generic [ref=e6]:
+        - heading "AI Workspace" [level=1] [ref=e7]
+        - paragraph [ref=e8]: Enterprise Platform
+    - navigation [ref=e9]:
+      - link "Chat" [ref=e10] [cursor=pointer]:
+        - /url: /chat
+        - img [ref=e11]
+        - text: Chat
+      - link "Documents" [ref=e13] [cursor=pointer]:
+        - /url: /documents
+        - img [ref=e14]
+        - text: Documents
+      - link "Knowledge" [ref=e17] [cursor=pointer]:
+        - /url: /knowledge
+        - img [ref=e18]
+        - text: Knowledge
+      - link "Members" [ref=e22] [cursor=pointer]:
+        - /url: /members
+        - img [ref=e23]
+        - text: Members
+      - link "Reports" [ref=e28] [cursor=pointer]:
+        - /url: /reports
+        - img [ref=e29]
+        - text: Reports
+    - button "Sign Out" [ref=e33] [cursor=pointer]:
+      - img [ref=e34]
+      - text: Sign Out
+  - main [ref=e37]:
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - text: Workspace
+          - combobox [ref=e41]
+          - button "+ New Workspace" [ref=e42] [cursor=pointer]
+        - generic [ref=e44]:
+          - generic [ref=e45]: Chats
+          - button "New Chat" [ref=e46] [cursor=pointer]:
+            - img [ref=e47]
+      - generic [ref=e48]:
+        - generic [ref=e50]:
+          - heading "Chat WS Offline" [level=2] [ref=e51]:
+            - text: Chat
+            - generic [ref=e52]: WS Offline
+          - paragraph [ref=e54]: Select a workspace
+        - generic [ref=e56]:
+          - img [ref=e58]
+          - heading "Start a Conversation" [level=3] [ref=e60]
+          - paragraph [ref=e61]: Ask questions about your uploaded documents. The AI will search your knowledge base and provide answers with source references.
+          - generic [ref=e62]:
+            - generic [ref=e63]: Search Agent
+            - generic [ref=e65]: Chat Agent
+        - generic [ref=e67]:
+          - generic [ref=e68]:
+            - textbox "Ask anything about your documents..." [disabled] [ref=e69]
+            - button [disabled] [ref=e70]:
+              - img [ref=e71]
+          - paragraph [ref=e74]: Press Enter to send • Shift+Enter for new line

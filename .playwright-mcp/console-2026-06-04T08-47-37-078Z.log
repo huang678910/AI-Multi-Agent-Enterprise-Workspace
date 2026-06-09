@@ -1,0 +1,15 @@
+[    1414ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[    1811ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8002/api/v1/workspaces:0
+[    1813ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8002/api/v1/workspaces/fe691715-9b77-4b77-a198-a40e45edee11/reports:0
+[    1814ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8002/api/v1/workspaces:0
+[    1815ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8002/api/v1/workspaces/fe691715-9b77-4b77-a198-a40e45edee11/reports:0
+[    1874ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[    2354ms] [LOG] [Fast Refresh] done in 480ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[    2380ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3000/login:0
+[    2652ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[  138277ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  139059ms] [LOG] [Fast Refresh] done in 782ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  139331ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=d8622e95-b770-4299-a03f-3cfc30b1dd49&workspace_id=fe691715-9b77-4b77-a198-a40e45edee11 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[  139645ms] [LOG] [WS] Connected @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:17
+[  139645ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[  139673ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139

@@ -1,0 +1,94 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: AI
+        - generic [ref=e6]:
+          - heading "AI Workspace" [level=1] [ref=e7]
+          - paragraph [ref=e8]: Enterprise Platform
+      - navigation [ref=e9]:
+        - link "Chat" [ref=e10] [cursor=pointer]:
+          - /url: /chat
+          - img [ref=e11]
+          - text: Chat
+        - link "Documents" [ref=e13] [cursor=pointer]:
+          - /url: /documents
+          - img [ref=e14]
+          - text: Documents
+        - link "Knowledge" [ref=e17] [cursor=pointer]:
+          - /url: /knowledge
+          - img [ref=e18]
+          - text: Knowledge
+        - link "Members" [ref=e22] [cursor=pointer]:
+          - /url: /members
+          - img [ref=e23]
+          - text: Members
+        - link "Reports" [ref=e28] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e29]
+          - text: Reports
+      - button "Sign Out" [ref=e33] [cursor=pointer]:
+        - img [ref=e34]
+        - text: Sign Out
+    - main [ref=e37]:
+      - generic [ref=e38]:
+        - generic [ref=e40]:
+          - heading "Reports" [level=1] [ref=e41]
+          - paragraph [ref=e42]: Generated AI reports and documents
+        - generic [ref=e43]:
+          - text: Workspace
+          - combobox [ref=e44]:
+            - option "E2E Test WS"
+            - option "E2E Test WS"
+            - option "E2E Test WS"
+            - option "E2E Test WS" [selected]
+        - generic [ref=e45]:
+          - generic [ref=e51]:
+            - generic [ref=e52]:
+              - generic [ref=e53]:
+                - img [ref=e54]
+                - heading "generate a technical analysis report on AI workspace system" [level=3] [ref=e57]
+                - generic [ref=e58]: Markdown
+              - paragraph [ref=e59]: 2026/6/3 23:01:22 · 4,605 chars
+              - generic [ref=e60]: "# Report: generate a technical analysis report on AI workspace system Here is the technical analysis report based on your request. --- # Technical Analysis Report: AI Workspace System **Date:** Oc..."
+            - generic [ref=e61]:
+              - link "MD" [ref=e62] [cursor=pointer]:
+                - /url: http://localhost:8002/api/v1/workspaces/fe691715-9b77-4b77-a198-a40e45edee11/reports/b49ccd90-db53-4d95-beae-601b68c38daa/download
+                - button "MD" [ref=e63]:
+                  - img [ref=e64]
+                  - text: MD
+              - link "PDF" [ref=e67] [cursor=pointer]:
+                - /url: http://localhost:8002/api/v1/workspaces/fe691715-9b77-4b77-a198-a40e45edee11/reports/b49ccd90-db53-4d95-beae-601b68c38daa/download?format=pdf
+                - button "PDF" [active] [ref=e68]:
+                  - img [ref=e69]
+                  - text: PDF
+              - link "DOCX" [ref=e72] [cursor=pointer]:
+                - /url: http://localhost:8002/api/v1/workspaces/fe691715-9b77-4b77-a198-a40e45edee11/reports/b49ccd90-db53-4d95-beae-601b68c38daa/download?format=docx
+                - button "DOCX" [ref=e73]:
+                  - img [ref=e74]
+                  - text: DOCX
+          - generic [ref=e78]:
+            - generic [ref=e79]:
+              - generic [ref=e80]:
+                - img [ref=e81]
+                - heading "E2E System Analysis" [level=3] [ref=e84]
+                - generic [ref=e85]: Markdown
+              - paragraph [ref=e86]: 2026/5/31 22:51:12 · 4,841 chars
+              - generic [ref=e87]: "# E2E System Analysis Here is the comprehensive technical report based on the provided information. # Technical Analysis Report: E2E System Architecture **Report Date:** October 26, 2023 **Author:*..."
+            - generic [ref=e88]:
+              - link "MD" [ref=e89] [cursor=pointer]:
+                - /url: http://localhost:8002/api/v1/workspaces/fe691715-9b77-4b77-a198-a40e45edee11/reports/50ab9934-6a36-4fed-861a-a97bb0398cd4/download
+                - button "MD" [ref=e90]:
+                  - img [ref=e91]
+                  - text: MD
+              - link "PDF" [ref=e94] [cursor=pointer]:
+                - /url: http://localhost:8002/api/v1/workspaces/fe691715-9b77-4b77-a198-a40e45edee11/reports/50ab9934-6a36-4fed-861a-a97bb0398cd4/download?format=pdf
+                - button "PDF" [ref=e95]:
+                  - img [ref=e96]
+                  - text: PDF
+              - link "DOCX" [ref=e99] [cursor=pointer]:
+                - /url: http://localhost:8002/api/v1/workspaces/fe691715-9b77-4b77-a198-a40e45edee11/reports/50ab9934-6a36-4fed-861a-a97bb0398cd4/download?format=docx
+                - button "DOCX" [ref=e100]:
+                  - img [ref=e101]
+                  - text: DOCX
+  - alert [ref=e104]

@@ -1,0 +1,11 @@
+session_id,user_id,role,content,msg_time,session_status,reply_length,workspace_id
+s001,u001,user,帮我统计工作区对话数据,2026-05-20 09:12:33,closed,20,b6a08b69-4dd9-4b6d-9d69-83126c9ef040
+s001,u001,assistant,已汇总当前工作区会话总量与平均回复字符长度,2026-05-20 09:12:38,closed,36,b6a08b69-4dd9-4b6d-9d69-83126c9ef040
+s002,u002,user,测试删除工作区接口报错403怎么排查,2026-05-20 10:05:11,active,28,b6a08b69-4dd9-4b6d-9d69-83126c9ef040
+s002,u002,assistant,403代表权限不足，需要管理员权限才可执行删除操作,2026-05-20 10:05:19,active,42,b6a08b69-4dd9-4b6d-9d69-83126c9ef040
+s003,u003,user,数据库枚举异常assistant字段报错,2026-05-20 11:22:10,closed,24,b6a08b69-4dd9-4b6d-9d69-83126c9ef040
+s003,u003,assistant,枚举messagerole无assistant枚举值，替换为agent即可,2026-05-20 11:22:17,closed,38,b6a08b69-4dd9-4b6d-9d69-83126c9ef040
+s004,u004,user,SQL仅允许SELECT禁止UPDATE修改,2026-05-20 14:30:22,pending,22,b6a08b69-4dd9-4b6d-9d69-83126c9ef040
+s004,u004,assistant,当前DB账号只读权限，如需更新需DBA开通增改权限,2026-05-20 14:30:30,pending,40,b6a08b69-4dd9-4b6d-9d69-83126c9ef040
+s005,u005,user,帮我生成测试CSV文件用于agent数据分析,2026-05-20 15:11:44,closed,26,b6a08b69-4dd9-4b6d-9d69-83126c9ef040
+s005,u005,assistant,已生成csv样例数据，复制保存即可直接导入数据库测试,2026-05-20 15:11:52,closed,39,b6a08b69-4dd9-4b6d-9d69-83126c9ef040

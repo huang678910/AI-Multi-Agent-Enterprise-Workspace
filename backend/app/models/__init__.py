@@ -4,6 +4,11 @@ from app.models.document import Document
 from app.models.document_chunk import DocumentChunk
 from app.models.chat_session import ChatSession
 from app.models.message import Message
+from app.models.company import (
+    Company, Department, Position, Employee,
+    Product, Customer, BusinessProcess, CompanyGoal, CompanyKPI,
+)
+from app.models.enterprise_memory import EnterpriseMemory, MemoryEvent
 
 __all__ = [
     "User",
@@ -13,4 +18,15 @@ __all__ = [
     "DocumentChunk",
     "ChatSession",
     "Message",
+    "Company",
+    "Department",
+    "Position",
+    "Employee",
+    "Product",
+    "Customer",
+    "BusinessProcess",
+    "CompanyGoal",
+    "CompanyKPI",
+    "EnterpriseMemory",
+    "MemoryEvent",
 ]

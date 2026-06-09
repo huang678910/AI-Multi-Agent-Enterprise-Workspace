@@ -1,0 +1,451 @@
+项目最终定位
+Enterprise AI Operating System（EAIOS）
+
+企业专属智能操作系统
+
+核心能力：
+
+理解企业
+记忆企业
+分析企业
+预测企业
+辅助企业决策
+一、功能架构
+第一层：企业基础数据中心
+Company Profile Engine
+
+企业画像系统
+
+功能
+
+维护：
+
+企业名称
+行业
+组织架构
+主营业务
+产品体系
+客户群体
+业务流程
+KPI
+OKR
+
+例如：
+
+公司：
+XX Toys
+
+行业：
+跨境电商
+
+主营：
+儿童玩具
+
+市场：
+美国
+欧洲
+
+部门：
+运营
+采购
+客服
+财务
+仓储
+数据表
+companies
+departments
+employees
+positions
+products
+customers
+business_processes
+company_goals
+company_kpis
+第二层：企业知识中心
+Enterprise Knowledge Hub
+
+升级原有RAG
+
+支持数据源
+PDF
+DOCX
+PPTX
+Excel
+CSV
+Markdown
+Notion
+Confluence
+Jira
+GitHub
+Email
+会议记录
+CRM
+ERP
+功能
+文档解析
+上传
+解析
+Chunk
+Embedding
+多模态解析
+
+未来：
+
+图片
+流程图
+表格
+会议录音
+技术栈
+Unstructured
+Docling
+PyMuPDF
+Whisper
+第三层：企业记忆系统
+Enterprise Memory
+
+这是未来核心模块。
+
+Long-Term Memory
+
+长期记忆
+
+保存：
+
+公司历史
+重大决策
+会议纪要
+战略规划
+Episodic Memory
+
+事件记忆
+
+例如：
+
+2026 Q2 停止美国市场
+原因：
+利润率下降
+Semantic Memory
+
+知识记忆
+
+例如：
+
+产品A属于玩具事业部
+技术栈
+LangGraph Memory
+Redis
+PostgreSQL
+Vector Store
+第四层：企业知识图谱
+Enterprise Knowledge Graph
+
+核心目标：
+
+让 AI 理解关系。
+
+实体
+员工
+部门
+产品
+客户
+项目
+供应商
+关系
+属于
+管理
+负责
+参与
+销售
+采购
+示例
+产品A
+↓
+属于
+↓
+玩具事业部
+
+玩具事业部
+↓
+负责人
+↓
+张三
+技术栈
+Neo4j
+NetworkX
+LangChain Graph
+GraphRAG
+第五层：企业数字孪生
+Digital Twin Engine
+
+这是高级模块。
+
+实时同步
+
+同步：
+
+订单量
+销售额
+库存
+客户数
+利润
+现金流
+AI 实时了解企业状态
+
+例如：
+
+库存：
+1500
+
+安全库存：
+3000
+
+状态：
+风险
+技术栈
+Kafka
+Redis Streams
+PostgreSQL
+TimescaleDB
+第六层：部门Agent体系
+Multi Department Agents
+CEO Agent
+
+职责：
+
+战略分析
+企业规划
+风险预测
+资源配置
+HR Agent
+
+职责：
+
+招聘建议
+组织优化
+绩效分析
+Finance Agent
+
+职责：
+
+利润分析
+预算预测
+现金流分析
+Sales Agent
+
+职责：
+
+销售预测
+客户分析
+商机挖掘
+Customer Agent
+
+职责：
+
+客户流失预测
+客户满意度分析
+Operations Agent
+
+职责：
+
+流程优化
+效率分析
+运营建议
+Procurement Agent
+
+职责：
+
+采购优化
+库存补货建议
+供应商分析
+技术栈
+LangGraph
+LangChain
+Supervisor Pattern
+Multi-Agent Workflow
+第七层：企业分析中心
+Enterprise Analytics Center
+KPI Dashboard
+
+展示：
+
+销售额
+利润率
+订单数
+客户增长
+库存周转率
+AI 自动分析
+
+例如：
+
+本月利润下降12%
+
+原因：
+物流成本上涨
+退货率增加
+技术栈
+Pandas
+Polars
+Plotly
+Apache Superset
+第八层：预测系统
+Forecast Engine
+销售预测
+
+预测：
+
+未来30天销售额
+库存预测
+
+预测：
+
+预计7天后缺货
+人力预测
+
+预测：
+
+是否需要扩招
+技术栈
+Scikit-Learn
+XGBoost
+Prophet
+PyTorch
+第九层：主动式AI
+Proactive AI
+
+当前：
+
+用户问
+AI答
+
+未来：
+
+AI主动发现问题
+AI主动提醒
+AI主动给建议
+示例
+客户流失率上升
+
+AI：
+
+建议联系前20名高价值客户
+示例
+库存低于安全库存
+
+AI：
+
+建议立即补货
+技术栈
+Scheduler
+Celery Beat
+Event Driven
+Rule Engine
+第十层：企业决策中心
+Strategic Decision Center
+
+企业大脑。
+
+输入
+市场数据
+客户数据
+销售数据
+库存数据
+财务数据
+输出
+战略建议
+扩张建议
+降本建议
+风险预警
+示例
+
+用户：
+
+我们是否应该进入东南亚市场？
+
+AI：
+
+分析：
+
+市场增长率
+竞争格局
+库存能力
+现金流
+
+结论：
+
+建议优先进入越南市场
+完整技术栈（最终版）
+前端
+技术	作用
+Next.js 15	应用框架
+React 19	UI
+TypeScript	类型系统
+TailwindCSS	样式
+shadcn/ui	组件
+Zustand	Client State
+React Query	Server State
+Axios	HTTP
+Framer Motion	动画
+Recharts / Plotly	数据图表
+WebSocket	实时通信
+后端
+技术	作用
+FastAPI	API
+SQLAlchemy Async	ORM
+Pydantic v2	校验
+Alembic	迁移
+Celery	异步任务
+Redis	缓存与消息
+AI与Agent
+技术	作用
+LangGraph	多Agent编排
+LangChain	Tool/RAG
+DeepSeek API	主模型
+OpenAI兼容接口	模型切换
+MCP Protocol	企业工具接入
+CrewAI（可选）	Agent协作实验
+RAG与知识库
+技术	作用
+PostgreSQL + pgvector	向量库
+BGE Embedding	中文向量
+BGE Reranker	重排序
+GraphRAG	图谱检索
+Neo4j	知识图谱
+数据分析与预测
+技术	作用
+Pandas	数据处理
+Polars	高性能分析
+Scikit-Learn	ML预测
+XGBoost	业务预测
+Prophet	时间序列预测
+企业集成
+技术	作用
+Notion API	企业知识同步
+Jira API	项目管理
+GitHub API	代码库分析
+Slack API	企业沟通
+企业微信 API	消息通知
+飞书 OpenAPI	企业协作
+基础设施
+技术	作用
+Docker	容器化
+Docker Compose	本地部署
+Nginx	网关
+GitHub Actions	CI/CD
+Kafka（后期）	事件流
+TimescaleDB（后期）	时序数据
+最终产品形态
+Enterprise AI Operating System
+
+├── 企业画像
+├── 企业知识库
+├── 企业记忆
+├── 企业知识图谱
+├── 企业数字孪生
+├── CEO Agent
+├── HR Agent
+├── Finance Agent
+├── Sales Agent
+├── Operations Agent
+├── Forecast Engine
+├── Proactive AI
+└── Strategic Decision Center

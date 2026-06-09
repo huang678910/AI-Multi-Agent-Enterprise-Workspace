@@ -1,0 +1,21 @@
+[    2052ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[    5122ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=7d5ecc39-af80-4a76-8bdf-8550db05dc5e&workspace_id=fe691715-9b77-4b77-a198-a40e45edee11 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[    5156ms] [WARNING] WebSocket connection to 'ws://localhost:8002/api/v1/ws/chat?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxY2Q5YjA1OC1mZmVjLTRlZDYtYTY0MS0yOGRiYWE3MDZjMzkiLCJpYXQiOjE3ODA0OTQwNDksImV4cCI6MTc4MDQ5NzY0OX0.H1Ty2NVcxphWjxyFg830ohe90A5dfYrIZKJDKJOnFgY&session_id=7d5ecc39-af80-4a76-8bdf-8550db05dc5e&workspace_id=fe691715-9b77-4b77-a198-a40e45edee11' failed: WebSocket is closed before the connection is established. @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:98
+[    5170ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=d8622e95-b770-4299-a03f-3cfc30b1dd49&workspace_id=fe691715-9b77-4b77-a198-a40e45edee11 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[    5527ms] [LOG] [WS] Connected @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:17
+[    5580ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[    5585ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[ 2266169ms] [LOG] [Chat] Agent status: Analyzing request... supervisor @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:153
+[ 2274133ms] [LOG] [Chat] Agent status: Agent: writer writer @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:153
+[ 2406601ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://localhost:8002/api/v1/workspaces/fe691715-9b77-4b77-a198-a40e45edee11/chat/sessions:0
+[ 2406798ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3000/login:0
+[ 2408565ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[ 2609112ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=d8622e95-b770-4299-a03f-3cfc30b1dd49&workspace_id=fe691715-9b77-4b77-a198-a40e45edee11 @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[ 2609581ms] [LOG] [WS] Connected @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:17
+[ 2609582ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[ 2609806ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[ 3966495ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[ 3968143ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[ 3971217ms] [LOG] [Fast Refresh] done in 3066ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[ 4000834ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[ 4003878ms] [LOG] [Fast Refresh] done in 3044ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43

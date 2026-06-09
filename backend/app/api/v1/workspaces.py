@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
-from app.api.deps import get_current_user
+from app.api.deps import get_current_user, require_workspace_role
 from app.models.user import User
 from app.schemas.workspace import WorkspaceCreate, WorkspaceUpdate, WorkspaceResponse, WorkspaceListResponse
 from app.services.workspace_service import WorkspaceService
@@ -17,7 +17,7 @@ async def list_workspaces(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    """获取当前用户的所有 Workspace"""
+    """获取当前用户的所有 Workspace（自动按用户过滤）"""
     workspaces = await WorkspaceService(db).list_by_user(current_user.id)
     return WorkspaceListResponse(
         workspaces=[WorkspaceResponse.model_validate(w) for w in workspaces],
@@ -31,7 +31,7 @@ async def create_workspace(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    """创建新 Workspace"""
+    """创建新 Workspace（创建者自动成为 admin）"""
     workspace = await WorkspaceService(db).create(current_user.id, request)
     return WorkspaceResponse.model_validate(workspace)
 
@@ -42,7 +42,8 @@ async def get_workspace(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    """获取单个 Workspace 详情"""
+    """获取单个 Workspace 详情（需要 viewer 以上权限）"""
+    await require_workspace_role(workspace_id, current_user, "viewer", db)
     workspace = await WorkspaceService(db).get_by_id(workspace_id)
     return WorkspaceResponse.model_validate(workspace)
 
@@ -54,7 +55,8 @@ async def update_workspace(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    """更新 Workspace"""
+    """更新 Workspace（需要 admin 权限）"""
+    await require_workspace_role(workspace_id, current_user, "admin", db)
     workspace = await WorkspaceService(db).update(workspace_id, request)
     return WorkspaceResponse.model_validate(workspace)
 
@@ -65,5 +67,6 @@ async def delete_workspace(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    """删除 Workspace"""
+    """删除 Workspace（需要 admin 权限）"""
+    await require_workspace_role(workspace_id, current_user, "admin", db)
     await WorkspaceService(db).delete(workspace_id)

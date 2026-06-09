@@ -1,0 +1,8 @@
+[    1119ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3000/login:0
+[    1422ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[   27550ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[   28115ms] [LOG] [Fast Refresh] done in 565ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[   28355ms] [LOG] [WS] Connecting: ws://localhost:8002/api/v1/ws/chat?token=***&session_id=ab84a0e7-41f4-44b1-b7d8-b7f0d35e04ff&workspace_id=419786f7-b0ba-41e1-87fa-68085490585a @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:13
+[   28670ms] [LOG] [WS] Connected @ webpack-internal:///(app-pages-browser)/./src/lib/websocket-client.ts:17
+[   28670ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139
+[   28670ms] [LOG] [Chat] WebSocket connected @ webpack-internal:///(app-pages-browser)/./src/app/chat/page.tsx:139

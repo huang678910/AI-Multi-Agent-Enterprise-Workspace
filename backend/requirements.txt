@@ -26,13 +26,31 @@ sentence-transformers>=3.3.0
 langgraph>=0.2.0
 langchain>=0.3.0
 langchain-core>=0.3.0
+langchain-openai>=0.2.0,<0.4.0
+langchain-huggingface>=0.1.0
 
 # File parsing (already installed but pin)
 pypdf>=5.1.0
 python-docx>=1.1.0
 python-pptx>=1.0.0
 
+# Tool Calling
+tavily-python>=0.7.0
+
+# Data Analysis
+pandas>=2.2.0
+numpy>=1.26.0
+
 # Utils
 aiofiles>=24.1.0
 redis>=5.2.0
 httpx>=0.28.0
+
+# Knowledge Graph
+neo4j>=5.0
+networkx>=3.0
+
+# Multi-modal document parsing
+unstructured>=0.15
+openai-whisper
+Pillow>=10.0

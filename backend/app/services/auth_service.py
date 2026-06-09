@@ -4,7 +4,7 @@ from sqlalchemy import select
 
 from app.models.user import User
 from app.schemas.auth import RegisterRequest, LoginRequest, TokenResponse
-from app.core.security import hash_password, verify_password, create_access_token
+from app.core.security import hash_password, verify_password, create_access_token, create_refresh_token
 from app.core.exceptions import BadRequestException, UnauthorizedException
 
 
@@ -31,8 +31,9 @@ class AuthService:
         self.db.add(user)
         await self.db.flush()
 
-        token = create_access_token(str(user.id))
-        return TokenResponse(access_token=token)
+        access_token = create_access_token(str(user.id))
+        refresh_token = create_refresh_token(str(user.id))
+        return TokenResponse(access_token=access_token, refresh_token=refresh_token)
 
     async def login(self, request: LoginRequest) -> TokenResponse:
         result = await self.db.execute(select(User).where(User.email == request.email))
@@ -41,5 +42,6 @@ class AuthService:
         if not user or not verify_password(request.password, user.hashed_password):
             raise UnauthorizedException("Invalid email or password")
 
-        token = create_access_token(str(user.id))
-        return TokenResponse(access_token=token)
+        access_token = create_access_token(str(user.id))
+        refresh_token = create_refresh_token(str(user.id))
+        return TokenResponse(access_token=access_token, refresh_token=refresh_token)

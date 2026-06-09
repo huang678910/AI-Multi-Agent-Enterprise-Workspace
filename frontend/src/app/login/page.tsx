@@ -30,7 +30,10 @@ export default function LoginPage() {
       } else {
         result = await login(email, password);
       }
-      setAuth(result.access_token, { id: "", email, username: username || email, is_active: true });
+      let userId = "";
+try { const p = JSON.parse(atob(result.access_token.split(".")[1])); userId = p.sub || ""; } catch { /* ok */ }
+if (result.refresh_token) { localStorage.setItem("refreshToken", result.refresh_token); }
+setAuth(result.access_token, { id: userId, email, username: username || email, is_active: true });
       router.push("/chat");
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Authentication failed";

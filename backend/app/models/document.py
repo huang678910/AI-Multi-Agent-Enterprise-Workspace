@@ -32,6 +32,7 @@ class Document(Base):
     chunk_count: Mapped[int] = mapped_column(Integer, default=0)
     error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
     file_path: Mapped[str | None] = mapped_column(String(1000), nullable=True)
+    source_type: Mapped[str] = mapped_column(String(50), default="upload", server_default="upload")
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),

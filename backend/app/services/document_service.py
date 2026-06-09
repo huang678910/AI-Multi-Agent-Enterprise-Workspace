@@ -52,6 +52,21 @@ def parse_txt(filepath: str) -> str:
     with open(filepath, "r", encoding="utf-8", errors="replace") as f:
         return f.read()
 
+def parse_csv(filepath: str) -> str:
+    """解析 CSV 文件为结构化文本"""
+    try:
+        import pandas as pd
+        df = pd.read_csv(filepath)
+        # 限制行数
+        if len(df) > 1000:
+            df = df.head(1000)
+        return df.to_markdown(index=False)
+    except ImportError:
+        raise ImportError("pandas not installed for CSV parsing")
+    except Exception as e:
+        raise ValueError(f"Failed to parse CSV: {e}")
+
+
 PARSERS = {
     ".pdf": parse_pdf,
     ".docx": parse_docx,
@@ -60,6 +75,7 @@ PARSERS = {
     ".txt": parse_txt,
     ".md": parse_txt,
     ".markdown": parse_txt,
+    ".csv": parse_csv,
 }
 
 SUPPORTED_TYPES = set(PARSERS.keys())
@@ -70,6 +86,24 @@ SUPPORTED_TYPES = set(PARSERS.keys())
 class DocumentService:
     def __init__(self, db: AsyncSession):
         self.db = db
+
+    async def create_document(
+        self, workspace_id: str, filename: str, file_type: str,
+        file_size: int = 0, source_type: str = "upload",
+    ) -> Document:
+        """Create a document record (for connectors / transcription)"""
+        doc = Document(
+            workspace_id=workspace_id,
+            filename=filename,
+            file_type=file_type,
+            file_size=file_size,
+            status=DocumentStatus.READY,
+            source_type=source_type,
+        )
+        self.db.add(doc)
+        await self.db.flush()
+        await self.db.refresh(doc)
+        return doc
 
     async def list_by_workspace(self, workspace_id: str) -> list[Document]:
         result = await self.db.execute(
@@ -194,32 +228,25 @@ class DocumentService:
         await self.db.flush()
 
     def _split_text(self, text: str, chunk_size: int = 512, overlap: int = 64) -> list[dict]:
-        """简单递归字符分割器（不依赖 langchain 以避免复杂性）"""
-        chunks = []
-        start = 0
-        idx = 0
-        while start < len(text):
-            end = min(start + chunk_size, len(text))
-            # 尝试在句号、换行处截断
-            if end < len(text):
-                for sep in ["\n\n", "\n", "。", ".", " ", ""]:
-                    pos = text.rfind(sep, start, end)
-                    if pos > start + chunk_size // 2:
-                        end = pos + len(sep)
-                        break
+        """使用 LangChain RecursiveCharacterTextSplitter 分割文本"""
+        from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-            chunk_text = text[start:end].strip()
-            if chunk_text:
+        splitter = RecursiveCharacterTextSplitter(
+            chunk_size=chunk_size,
+            chunk_overlap=overlap,
+            separators=["\n\n", "\n", "。", ".", " ", ""],
+            length_function=len,
+        )
+        raw_chunks = splitter.split_text(text)
+
+        chunks = []
+        for i, chunk_text in enumerate(raw_chunks):
+            if chunk_text.strip():
                 chunks.append({
-                    "content": chunk_text,
+                    "content": chunk_text.strip(),
                     "metadata": {
-                        "chunk_index": idx,
-                        "start_char": start,
-                        "end_char": end,
+                        "chunk_index": i,
+                        "char_count": len(chunk_text),
                     },
                 })
-                idx += 1
-
-            start = end - overlap if end < len(text) else len(text)
-
         return chunks

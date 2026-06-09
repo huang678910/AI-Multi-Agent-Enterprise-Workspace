@@ -1,0 +1,19 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e6]: AI
+      - heading "Welcome Back" [level=3] [ref=e7]
+      - paragraph [ref=e8]: Sign in to AI Workspace
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - text: Email
+          - textbox "you@company.com" [ref=e12]: e2e@test.com
+        - generic [ref=e13]:
+          - text: Password
+          - textbox "••••••••" [ref=e14]: Test123!
+        - button "Sign In" [ref=e15] [cursor=pointer]
+      - paragraph [ref=e16]:
+        - text: Don't have an account?
+        - button "Register" [ref=e17] [cursor=pointer]
+  - alert [ref=e18]

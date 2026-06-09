@@ -1,0 +1,256 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e38]
+  - generic [ref=e55]:
+    - complementary [ref=e56]:
+      - generic [ref=e57]:
+        - generic [ref=e58]: AI
+        - generic [ref=e59]:
+          - heading "AI Workspace" [level=1] [ref=e60]
+          - paragraph [ref=e61]: Enterprise Platform
+      - navigation [ref=e62]:
+        - link "Chat" [ref=e63] [cursor=pointer]:
+          - /url: /chat
+          - img [ref=e64]
+          - text: Chat
+        - link "Documents" [ref=e66] [cursor=pointer]:
+          - /url: /documents
+          - img [ref=e67]
+          - text: Documents
+        - link "Knowledge" [ref=e70] [cursor=pointer]:
+          - /url: /knowledge
+          - img [ref=e71]
+          - text: Knowledge
+        - link "Members" [ref=e75] [cursor=pointer]:
+          - /url: /members
+          - img [ref=e76]
+          - text: Members
+        - link "Reports" [ref=e81] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e82]
+          - text: Reports
+      - button "Sign Out" [ref=e86] [cursor=pointer]:
+        - img [ref=e87]
+        - text: Sign Out
+    - main [ref=e90]:
+      - generic [ref=e91]:
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - text: Workspace
+            - combobox [ref=e94]:
+              - option "E2E Test WS" [selected]
+              - option "E2E Test WS"
+              - option "E2E Test WS"
+              - option "E2E Test WS"
+            - button "+ New Workspace" [ref=e95] [cursor=pointer]
+          - generic [ref=e96]:
+            - generic [ref=e97]:
+              - generic [ref=e98]: Chats
+              - button "New Chat" [ref=e99] [cursor=pointer]:
+                - img [ref=e100]
+            - generic [ref=e101] [cursor=pointer]:
+              - generic [ref=e102]:
+                - img [ref=e103]
+                - generic [ref=e105]: generate a system analysis report
+              - button [ref=e106]:
+                - img [ref=e107]
+            - generic [ref=e110] [cursor=pointer]:
+              - generic [ref=e111]:
+                - img [ref=e112]
+                - generic [ref=e114]: how many documents total in the database
+              - button [ref=e115]:
+                - img [ref=e116]
+            - generic [ref=e119] [cursor=pointer]:
+              - generic [ref=e120]:
+                - img [ref=e121]
+                - generic [ref=e123]: how many documents total in the database
+              - button [ref=e124]:
+                - img [ref=e125]
+            - generic [ref=e128] [cursor=pointer]:
+              - generic [ref=e129]:
+                - img [ref=e130]
+                - generic [ref=e132]: how many documents total in the database
+              - button [ref=e133]:
+                - img [ref=e134]
+            - generic [ref=e137] [cursor=pointer]:
+              - generic [ref=e138]:
+                - img [ref=e139]
+                - generic [ref=e141]: generate a system analysis report
+              - button [ref=e142]:
+                - img [ref=e143]
+            - generic [ref=e146] [cursor=pointer]:
+              - generic [ref=e147]:
+                - img [ref=e148]
+                - generic [ref=e150]: how many documents total in the database
+              - button [ref=e151]:
+                - img [ref=e152]
+            - generic [ref=e155] [cursor=pointer]:
+              - generic [ref=e156]:
+                - img [ref=e157]
+                - generic [ref=e159]: search the web for latest AI news
+              - button [ref=e160]:
+                - img [ref=e161]
+            - generic [ref=e164] [cursor=pointer]:
+              - generic [ref=e165]:
+                - img [ref=e166]
+                - generic [ref=e168]: search for documents about testing
+              - button [ref=e169]:
+                - img [ref=e170]
+            - generic [ref=e173] [cursor=pointer]:
+              - generic [ref=e174]:
+                - img [ref=e175]
+                - generic [ref=e177]: generate a system analysis report
+              - button [ref=e178]:
+                - img [ref=e179]
+            - generic [ref=e182] [cursor=pointer]:
+              - generic [ref=e183]:
+                - img [ref=e184]
+                - generic [ref=e186]: how many documents total in the database
+              - button [ref=e187]:
+                - img [ref=e188]
+        - generic [ref=e191]:
+          - generic [ref=e193]:
+            - heading "E2E Test WS WS Live Supervisor" [level=2] [ref=e303]:
+              - text: E2E Test WS
+              - generic [ref=e195]: WS Live
+              - generic [ref=e304]: Supervisor
+            - paragraph [ref=e197]: No description
+          - generic [ref=e199]:
+            - paragraph [ref=e203]: generate a system analysis report
+            - generic [ref=e206]:
+              - 'heading "Report: generate a system analysis report" [level=1] [ref=e207]'
+              - paragraph [ref=e208]: Here is a comprehensive system analysis report generated based on your request.
+              - paragraph [ref=e209]:
+                - strong [ref=e210]: "Report Title:"
+                - text: System Analysis Report
+                - strong [ref=e211]: "Date:"
+                - text: "[Current Date]"
+                - strong [ref=e212]: "Report Type:"
+                - text: Technical Analysis Report
+              - separator [ref=e213]
+              - heading "Executive Summary" [level=3] [ref=e214]
+              - paragraph [ref=e215]:
+                - text: This report provides a high-level system analysis based on the request for a general system assessment. As no specific system data, logs, or architecture diagrams were provided in the available context, this analysis serves as a
+                - strong [ref=e216]: generic framework
+                - text: for evaluating an enterprise system. The key findings focus on defining the core components of system health, identifying common risk areas, and outlining the necessary data points required for a thorough technical evaluation. To deliver a specific, actionable analysis, detailed system metrics (e.g., CPU usage, error logs, code repositories) are required.
+              - heading "Key Findings" [level=3] [ref=e217]
+              - list [ref=e218]:
+                - listitem [ref=e219]:
+                  - strong [ref=e220]: "Lack of Specific Data:"
+                  - text: The analysis is constrained by the absence of specific system context, including architecture diagrams, performance metrics, source code, or error logs.
+                - listitem [ref=e221]:
+                  - strong [ref=e222]: "Framework Established:"
+                  - text: A standard methodology for system analysis has been defined, covering Architecture, Performance, Security, and Maintainability.
+                - listitem [ref=e223]:
+                  - strong [ref=e224]: "Common Risk Areas:"
+                  - text: Without data, the analysis highlights generic high-risk areas such as single points of failure, unpatched dependencies, and lack of monitoring.
+              - heading "Detailed Analysis" [level=3] [ref=e225]
+              - heading "1. System Architecture Overview" [level=4] [ref=e226]
+              - paragraph [ref=e227]:
+                - emphasis [ref=e228]: Analysis based on generic enterprise best practices.
+              - list [ref=e229]:
+                - listitem [ref=e230]:
+                  - strong [ref=e231]: "Architecture Style:"
+                  - text: Most modern systems utilize a
+                  - strong [ref=e232]: Microservices
+                  - text: or
+                  - strong [ref=e233]: Modular Monolith
+                  - text: architecture. Without specific context, we assume a standard multi-tier architecture (Presentation, Application, Data).
+                - listitem [ref=e234]:
+                  - strong [ref=e235]: "Key Components:"
+                  - list [ref=e236]:
+                    - listitem [ref=e237]:
+                      - strong [ref=e238]: "Load Balancer:"
+                      - text: Manages traffic distribution.
+                    - listitem [ref=e239]:
+                      - strong [ref=e240]: "Application Servers:"
+                      - text: Process business logic.
+                    - listitem [ref=e241]:
+                      - strong [ref=e242]: "Database Clusters:"
+                      - text: Store persistent data.
+                    - listitem [ref=e243]:
+                      - strong [ref=e244]: "Message Queues:"
+                      - text: Handle asynchronous tasks.
+                - listitem [ref=e245]:
+                  - strong [ref=e246]: "Potential Bottleneck:"
+                  - text: In a generic system, the database layer is often the primary bottleneck if caching strategies (e.g., Redis, Memcached) are not implemented.
+              - heading "2. Performance Analysis" [level=4] [ref=e247]
+              - paragraph [ref=e248]:
+                - emphasis [ref=e249]: Analysis based on generic system health indicators.
+              - paragraph [ref=e250]:
+                - text: "| Metric | Status | Recommended Action | | :--- | :--- | :--- | |"
+                - strong [ref=e251]: Response Time
+                - text: "| Unknown | Requires APM (Application Performance Monitoring) data to identify slow transactions. | |"
+                - strong [ref=e252]: Throughput
+                - text: "| Unknown | Requires load testing results to determine max concurrent users. | |"
+                - strong [ref=e253]: Resource Utilization
+                - text: "| Unknown | Requires monitoring of CPU, Memory, and Disk I/O over a 24-hour period. | |"
+                - strong [ref=e254]: Error Rate
+                - text: "| Unknown | Requires log aggregation (e.g., ELK Stack, Splunk) to identify 4xx/5xx errors. |"
+              - heading "3. Security & Compliance Analysis" [level=4] [ref=e255]
+              - paragraph [ref=e256]:
+                - emphasis [ref=e257]: Analysis based on standard security frameworks (e.g., OWASP).
+              - list [ref=e258]:
+                - listitem [ref=e259]:
+                  - strong [ref=e260]: "Authentication/Authorization:"
+                  - text: Standard systems should implement OAuth 2.0 or SAML. Without context, the presence of Role-Based Access Control (RBAC) cannot be confirmed.
+                - listitem [ref=e261]:
+                  - strong [ref=e262]: "Data Encryption:"
+                  - text: It is assumed that data is encrypted in transit (TLS 1.2/1.3). Encryption at rest (AES-256) is a standard requirement.
+                - listitem [ref=e263]:
+                  - strong [ref=e264]: "Dependency Management:"
+                  - text: A common risk is "dependency drift," where third-party libraries contain known vulnerabilities (CVEs). A Software Bill of Materials (SBOM) is required for verification.
+              - heading "4. Maintainability & Code Quality" [level=4] [ref=e265]
+              - paragraph [ref=e266]:
+                - emphasis [ref=e267]: Analysis based on standard DevOps practices.
+              - list [ref=e268]:
+                - listitem [ref=e269]:
+                  - strong [ref=e270]: "Documentation:"
+                  - text: The lack of provided context suggests a potential gap in system documentation.
+                - listitem [ref=e271]:
+                  - strong [ref=e272]: "CI/CD Pipeline:"
+                  - text: A robust system should utilize automated testing and deployment pipelines (e.g., Jenkins, GitLab CI). Without data, the pipeline health is unverified.
+                - listitem [ref=e273]:
+                  - strong [ref=e274]: "Technical Debt:"
+                  - text: Cannot be measured without access to static code analysis tools (e.g., SonarQube).
+              - heading "Recommendations" [level=3] [ref=e275]
+              - paragraph [ref=e276]: "To complete a comprehensive system analysis, the following actions are required:"
+              - list [ref=e277]:
+                - listitem [ref=e278]:
+                  - strong [ref=e279]: "Provide System Context:"
+                  - text: "Share the following artifacts for a detailed analysis:"
+                  - list [ref=e280]:
+                    - listitem [ref=e281]: High-level architecture diagram (PDF or draw.io).
+                    - listitem [ref=e282]: Last 7 days of application logs (sample).
+                    - listitem [ref=e283]: Performance metrics (CPU, Memory, Response Time) from monitoring tools.
+                    - listitem [ref=e284]: Source code repository link (if applicable) for static analysis.
+                - listitem [ref=e285]:
+                  - strong [ref=e286]: "Conduct a Load Test:"
+                  - text: Perform a stress test using tools like
+                  - strong [ref=e287]: k6
+                  - text: or
+                  - strong [ref=e288]: JMeter
+                  - text: to determine the system's breaking point and validate scalability.
+                - listitem [ref=e289]:
+                  - strong [ref=e290]: "Perform a Security Audit:"
+                  - text: Run a vulnerability scan using
+                  - strong [ref=e291]: OWASP ZAP
+                  - text: or
+                  - strong [ref=e292]: Snyk
+                  - text: to identify critical CVEs in dependencies.
+                - listitem [ref=e293]:
+                  - strong [ref=e294]: "Implement Monitoring:"
+                  - text: If not already in place, set up real-time monitoring for key health metrics (CPU, Memory, Error Rate) with alerting thresholds.
+            - paragraph [ref=e308]: search the web for latest DeepSeek AI news
+            - generic [ref=e310]:
+              - generic [ref=e311]:
+                - img [ref=e312]
+                - text: Supervisor
+              - generic [ref=e315]:
+                - img [ref=e316]
+                - generic [ref=e319]: Thinking...
+          - generic [ref=e295]:
+            - generic [ref=e296]:
+              - textbox "Ask anything about your documents..." [disabled] [ref=e297]
+              - button [disabled] [ref=e298]:
+                - img [ref=e299]
+            - paragraph [ref=e302]: Press Enter to send • Shift+Enter for new line

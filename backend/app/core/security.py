@@ -33,6 +33,20 @@ def create_access_token(subject: str | int, expires_delta: timedelta | None = No
     return jwt.encode(payload, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
 
 
+def create_refresh_token(subject: str | int, expires_delta: timedelta | None = None) -> str:
+    """创建 Refresh Token（7 天有效期）"""
+    if expires_delta is None:
+        expires_delta = timedelta(days=7)
+    now = datetime.now(timezone.utc)
+    payload = {
+        "sub": str(subject),
+        "iat": now,
+        "exp": now + expires_delta,
+        "type": "refresh",
+    }
+    return jwt.encode(payload, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
+
+
 def decode_access_token(token: str) -> dict[str, Any]:
     """解码并验证 JWT，无效时抛出 JWTError"""
     return jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])

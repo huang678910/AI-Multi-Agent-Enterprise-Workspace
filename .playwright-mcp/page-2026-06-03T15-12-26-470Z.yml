@@ -1,0 +1,66 @@
+- generic [ref=e1]:
+  - alert [ref=e18]
+  - generic [ref=e19]:
+    - complementary [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]: AI
+        - generic [ref=e23]:
+          - heading "AI Workspace" [level=1] [ref=e24]
+          - paragraph [ref=e25]: Enterprise Platform
+      - navigation [ref=e26]:
+        - link "Chat" [ref=e27] [cursor=pointer]:
+          - /url: /chat
+          - img [ref=e28]
+          - text: Chat
+        - link "Documents" [ref=e30] [cursor=pointer]:
+          - /url: /documents
+          - img [ref=e31]
+          - text: Documents
+        - link "Knowledge" [ref=e34] [cursor=pointer]:
+          - /url: /knowledge
+          - img [ref=e35]
+          - text: Knowledge
+        - link "Members" [ref=e39] [cursor=pointer]:
+          - /url: /members
+          - img [ref=e40]
+          - text: Members
+        - link "Reports" [active] [ref=e45] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e46]
+          - text: Reports
+      - button "Sign Out" [ref=e50] [cursor=pointer]:
+        - img [ref=e51]
+        - text: Sign Out
+    - main [ref=e54]:
+      - generic [ref=e187]:
+        - generic [ref=e189]:
+          - heading "Reports" [level=1] [ref=e190]
+          - paragraph [ref=e191]: Generated AI reports and documents
+        - generic [ref=e192]:
+          - text: Workspace
+          - combobox [ref=e193]:
+            - option "E2E Test WS"
+            - option "E2E Test WS"
+            - option "E2E Test WS"
+            - option "E2E Test WS" [selected]
+        - generic [ref=e194]:
+          - generic [ref=e197]:
+            - generic [ref=e198]:
+              - img [ref=e199]
+              - heading "generate a technical analysis report on AI workspace system" [level=3] [ref=e202]
+              - generic [ref=e203]: Markdown
+            - paragraph [ref=e204]: 2026/6/3 23:01:22 · 4,605 chars
+            - generic [ref=e205]: "# Report: generate a technical analysis report on AI workspace system Here is the technical analysis report based on your request. --- # Technical Analysis Report: AI Workspace System **Date:** Oc..."
+          - generic [ref=e207]:
+            - generic [ref=e208]:
+              - generic [ref=e209]:
+                - img [ref=e210]
+                - heading "E2E System Analysis" [level=3] [ref=e213]
+                - generic [ref=e214]: Markdown
+              - paragraph [ref=e215]: 2026/5/31 22:51:12 · 4,841 chars
+              - generic [ref=e216]: "# E2E System Analysis Here is the comprehensive technical report based on the provided information. # Technical Analysis Report: E2E System Architecture **Report Date:** October 26, 2023 **Author:*..."
+            - link "Download" [ref=e217] [cursor=pointer]:
+              - /url: http://localhost:8002/api/v1/workspaces/fe691715-9b77-4b77-a198-a40e45edee11/reports/50ab9934-6a36-4fed-861a-a97bb0398cd4/download
+              - button "Download" [ref=e218]:
+                - img [ref=e219]
+                - text: Download

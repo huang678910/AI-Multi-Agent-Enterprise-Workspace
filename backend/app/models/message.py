@@ -25,6 +25,7 @@ class Message(Base):
     role: Mapped[MessageRole] = mapped_column(SAEnum(MessageRole), nullable=False)
     content: Mapped[str] = mapped_column(Text, nullable=False)
     sources: Mapped[list | None] = mapped_column(JSONB, default=list)
+    agent_type: Mapped[str | None] = mapped_column(String(50), nullable=True, default=None)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
     # Relationships

@@ -29,20 +29,36 @@ class Settings(BaseSettings):
     REDIS_HOST: str = "localhost"
     REDIS_PORT: int = 6379
     REDIS_URL: str = ""
+    REDIS_ENABLED: bool = True
+
+    # --- WebSocket ---
+    WS_HEARTBEAT_INTERVAL: int = 30
+
+    # --- 速率限制 ---
+    RATE_LIMIT_PER_MINUTE: int = 30
 
     # --- DeepSeek API ---
     DEEPSEEK_API_KEY: str = ""
     DEEPSEEK_BASE_URL: str = "https://api.deepseek.com/v1"
     LLM_MODEL: str = "deepseek-chat"
 
+    # --- Tavily Search API ---
+    TAVILY_API_KEY: str = ""
+
     # --- Embedding ---
     EMBEDDING_MODEL: str = "BAAI/bge-small-zh-v1.5"
     EMBEDDING_DIM: int = 512
+    HF_ENDPOINT: str = "https://hf-mirror.com"
 
     # --- JWT ---
     SECRET_KEY: str = "change-me-to-a-random-string"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440  # 24 hours
     ALGORITHM: str = "HS256"
+
+    # --- Neo4j Knowledge Graph ---
+    NEO4J_URI: str = "bolt://localhost:7687"
+    NEO4J_USER: str = "neo4j"
+    NEO4J_PASSWORD: str = "password"
 
     @property
     def db_url(self) -> str:

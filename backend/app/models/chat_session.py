@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 
 from sqlalchemy import String, DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.dialects.postgresql import UUID, JSONB
 
 from app.database import Base
 
@@ -19,6 +19,7 @@ class ChatSession(Base):
         UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False
     )
     title: Mapped[str] = mapped_column(String(255), default="New Chat")
+    metadata_: Mapped[dict | None] = mapped_column("metadata", JSONB, nullable=True, default=None)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),

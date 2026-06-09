@@ -82,3 +82,44 @@ export interface SSEEvent {
   content: string;
   sources?: Source[];
 }
+
+// ---- WebSocket Events ----
+export interface WSConnectedEvent {
+  type: "connected";
+  data: {
+    session_id: string;
+    workspace_id: string;
+  };
+}
+
+export interface WSTokenEvent {
+  type: "token";
+  content: string;
+}
+
+export interface WSStatusEvent {
+  type: "status";
+  content: string;
+  agent?: string;
+}
+
+export interface WSDoneEvent {
+  type: "done";
+  content: string;
+  sources?: Source[];
+}
+
+export interface WSErrorEvent {
+  type: "error";
+  content: string;
+  code?: string;
+}
+
+export type WSServerEvent = WSConnectedEvent | WSTokenEvent | WSStatusEvent | WSDoneEvent | WSErrorEvent;
+
+export interface WSClientMessage {
+  type: "message" | "cancel" | "ping";
+  data?: {
+    content: string;
+  };
+}

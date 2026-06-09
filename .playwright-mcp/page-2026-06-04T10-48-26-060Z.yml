@@ -1,0 +1,268 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e18]
+  - generic [ref=e19]:
+    - complementary [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]: AI
+        - generic [ref=e23]:
+          - heading "AI Workspace" [level=1] [ref=e24]
+          - paragraph [ref=e25]: Enterprise Platform
+      - navigation [ref=e26]:
+        - link "Chat" [ref=e27] [cursor=pointer]:
+          - /url: /chat
+          - img [ref=e28]
+          - text: Chat
+        - link "Documents" [ref=e30] [cursor=pointer]:
+          - /url: /documents
+          - img [ref=e31]
+          - text: Documents
+        - link "Knowledge" [ref=e34] [cursor=pointer]:
+          - /url: /knowledge
+          - img [ref=e35]
+          - text: Knowledge
+        - link "Members" [ref=e39] [cursor=pointer]:
+          - /url: /members
+          - img [ref=e40]
+          - text: Members
+        - link "Reports" [ref=e45] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e46]
+          - text: Reports
+      - button "Sign Out" [ref=e50] [cursor=pointer]:
+        - img [ref=e51]
+        - text: Sign Out
+    - main [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - text: Workspace
+            - combobox [ref=e58]:
+              - option "E2E Test WS"
+              - option "E2E Test WS" [selected]
+              - option "E2E Test WS"
+              - option "E2E Test WS"
+            - button "Delete workspace" [ref=e59] [cursor=pointer]:
+              - img [ref=e60]
+            - button "+ New Workspace" [ref=e63] [cursor=pointer]
+          - generic [ref=e64]:
+            - generic [ref=e65]:
+              - generic [ref=e66]: Chats
+              - button "New Chat" [ref=e67] [cursor=pointer]:
+                - img [ref=e68]
+            - generic [ref=e69] [cursor=pointer]:
+              - generic [ref=e70]:
+                - img [ref=e71]
+                - generic [ref=e73]: generate a system architecture report
+              - button [ref=e74]:
+                - img [ref=e75]
+            - generic [ref=e78] [cursor=pointer]:
+              - generic [ref=e79]:
+                - img [ref=e80]
+                - generic [ref=e82]: query how many documents total
+              - button [ref=e83]:
+                - img [ref=e84]
+            - generic [ref=e87] [cursor=pointer]:
+              - generic [ref=e88]:
+                - img [ref=e89]
+                - generic [ref=e91]: SELECT COUNT(*) FROM documents
+              - button [ref=e92]:
+                - img [ref=e93]
+            - generic [ref=e96] [cursor=pointer]:
+              - generic [ref=e97]:
+                - img [ref=e98]
+                - generic [ref=e100]: generate a system analysis report
+              - button [ref=e101]:
+                - img [ref=e102]
+            - generic [ref=e105] [cursor=pointer]:
+              - generic [ref=e106]:
+                - img [ref=e107]
+                - generic [ref=e109]: count how many documents in the database
+              - button [ref=e110]:
+                - img [ref=e111]
+            - generic [ref=e114] [cursor=pointer]:
+              - generic [ref=e115]:
+                - img [ref=e116]
+                - generic [ref=e118]: WSTest
+              - button [ref=e119]:
+                - img [ref=e120]
+            - generic [ref=e123] [cursor=pointer]:
+              - generic [ref=e124]:
+                - img [ref=e125]
+                - generic [ref=e127]: query how many documents are in the database
+              - button [ref=e128]:
+                - img [ref=e129]
+            - generic [ref=e132] [cursor=pointer]:
+              - generic [ref=e133]:
+                - img [ref=e134]
+                - generic [ref=e136]: Hello
+              - button [ref=e137]:
+                - img [ref=e138]
+            - generic [ref=e141] [cursor=pointer]:
+              - generic [ref=e142]:
+                - img [ref=e143]
+                - generic [ref=e145]: AgentTest
+              - button [ref=e146]:
+                - img [ref=e147]
+        - generic [ref=e150]:
+          - generic [ref=e152]:
+            - heading "E2E Test WS WS Live" [level=2] [ref=e153]:
+              - text: E2E Test WS
+              - generic [ref=e154]: WS Live
+            - paragraph [ref=e156]: No description
+          - generic [ref=e158]:
+            - paragraph [ref=e162]: generate a system architecture report
+            - generic [ref=e165]:
+              - paragraph [ref=e166]:
+                - text: I need the
+                - strong [ref=e167]: context
+                - text: (documents, notes, or project files) from your enterprise knowledge workspace to generate a system architecture report tailored to your specific system.
+              - paragraph [ref=e168]:
+                - text: However, I can provide you with a
+                - strong [ref=e169]: comprehensive template
+                - text: for a system architecture report. You can then fill in the details based on your project.
+              - separator [ref=e170]
+              - heading "System Architecture Report (Template)" [level=1] [ref=e171]
+              - heading "1. Executive Summary" [level=2] [ref=e172]
+              - list [ref=e173]:
+                - listitem [ref=e174]:
+                  - strong [ref=e175]: "Project Name:"
+                  - text: "[System Name]"
+                - listitem [ref=e176]:
+                  - strong [ref=e177]: "Purpose:"
+                  - text: Briefly describe what the system does and its primary business goals.
+                - listitem [ref=e178]:
+                  - strong [ref=e179]: "Scope:"
+                  - text: High-level overview of the architecture (e.g., microservices, monolithic, serverless).
+              - heading "2. Architectural Goals & Constraints" [level=2] [ref=e180]
+              - list [ref=e181]:
+                - listitem [ref=e182]:
+                  - strong [ref=e183]: "Key Requirements:"
+                  - text: Scalability, security, availability, performance, maintainability.
+                - listitem [ref=e184]:
+                  - strong [ref=e185]: "Constraints:"
+                  - text: Budget, timeline, technology stack limitations, regulatory compliance.
+              - heading "3. System Overview (Context Diagram)" [level=2] [ref=e186]
+              - list [ref=e187]:
+                - listitem [ref=e188]:
+                  - strong [ref=e189]: "High-Level Diagram:"
+                  - text: (Describe or include a C4 Context diagram)
+                - listitem [ref=e190]:
+                  - strong [ref=e191]: "External Actors:"
+                  - text: Users, third-party services, external databases.
+                - listitem [ref=e192]:
+                  - strong [ref=e193]: "System Boundaries:"
+                  - text: What is inside vs. outside the system.
+              - heading "4. Technology Stack" [level=2] [ref=e194]
+              - paragraph [ref=e195]: "| Layer | Technology Choices | Justification | |---------------|-------------------|---------------| | Frontend | React / Angular | [Reason] | | Backend | Node.js / Python | [Reason] | | Database | PostgreSQL / MongoDB | [Reason] | | Infrastructure| AWS / Azure / GCP | [Reason] | | CI/CD | GitHub Actions / Jenkins | [Reason] |"
+              - heading "5. Component Architecture (Container Diagram)" [level=2] [ref=e196]
+              - list [ref=e197]:
+                - listitem [ref=e198]:
+                  - paragraph [ref=e199]:
+                    - strong [ref=e200]: "List of Core Components:"
+                  - list [ref=e201]:
+                    - listitem [ref=e202]:
+                      - strong [ref=e203]: "API Gateway:"
+                      - text: Entry point for all client requests.
+                    - listitem [ref=e204]:
+                      - strong [ref=e205]: "User Service:"
+                      - text: Handles authentication, authorization, and user profiles.
+                    - listitem [ref=e206]:
+                      - strong [ref=e207]: "Data Service:"
+                      - text: Manages core business data and CRUD operations.
+                    - listitem [ref=e208]:
+                      - strong [ref=e209]: "Notification Service:"
+                      - text: Sends emails, push notifications, or SMS.
+                    - listitem [ref=e210]:
+                      - strong [ref=e211]: "Message Queue:"
+                      - text: (e.g., RabbitMQ, Kafka) for async processing.
+                - listitem [ref=e212]:
+                  - paragraph [ref=e213]:
+                    - strong [ref=e214]: "Interactions:"
+                    - text: Describe how components communicate (REST, gRPC, events).
+              - heading "6. Data Architecture" [level=2] [ref=e215]
+              - list [ref=e216]:
+                - listitem [ref=e217]:
+                  - strong [ref=e218]: "Database Schema:"
+                  - text: (Brief description or ER diagram reference)
+                - listitem [ref=e219]:
+                  - strong [ref=e220]: "Data Flow:"
+                  - text: How data moves between components.
+                - listitem [ref=e221]:
+                  - strong [ref=e222]: "Storage:"
+                  - text: Relational DB, NoSQL, Object Storage (S3, Blob).
+              - heading "7. Security Architecture" [level=2] [ref=e223]
+              - list [ref=e224]:
+                - listitem [ref=e225]:
+                  - strong [ref=e226]: "Authentication:"
+                  - text: OAuth2, JWT, SSO.
+                - listitem [ref=e227]:
+                  - strong [ref=e228]: "Authorization:"
+                  - text: Role-based access control (RBAC).
+                - listitem [ref=e229]:
+                  - strong [ref=e230]: "Data Protection:"
+                  - text: Encryption at rest (AES-256) and in transit (TLS 1.3).
+                - listitem [ref=e231]:
+                  - strong [ref=e232]: "Compliance:"
+                  - text: GDPR, HIPAA, SOC2 (if applicable).
+              - heading "8. Deployment & Infrastructure" [level=2] [ref=e233]
+              - list [ref=e234]:
+                - listitem [ref=e235]:
+                  - strong [ref=e236]: "Environment:"
+                  - text: Development, Staging, Production.
+                - listitem [ref=e237]:
+                  - strong [ref=e238]: "Orchestration:"
+                  - text: Kubernetes / Docker Compose.
+                - listitem [ref=e239]:
+                  - strong [ref=e240]: "Load Balancing:"
+                  - text: Nginx / AWS ALB.
+                - listitem [ref=e241]:
+                  - strong [ref=e242]: "Monitoring:"
+                  - text: Prometheus, Grafana, ELK Stack.
+                - listitem [ref=e243]:
+                  - strong [ref=e244]: "CI/CD Pipeline:"
+                  - text: Automated build, test, deploy.
+              - heading "9. Performance & Scalability" [level=2] [ref=e245]
+              - list [ref=e246]:
+                - listitem [ref=e247]:
+                  - strong [ref=e248]: "Scaling Strategy:"
+                  - text: Horizontal vs. vertical scaling.
+                - listitem [ref=e249]:
+                  - strong [ref=e250]: "Caching:"
+                  - text: Redis / CDN for static assets.
+                - listitem [ref=e251]:
+                  - strong [ref=e252]: "Database Optimization:"
+                  - text: Indexing, read replicas, sharding.
+              - heading "10. Disaster Recovery & High Availability" [level=2] [ref=e253]
+              - list [ref=e254]:
+                - listitem [ref=e255]:
+                  - strong [ref=e256]: "Backup Strategy:"
+                  - text: Daily snapshots, point-in-time recovery.
+                - listitem [ref=e257]:
+                  - strong [ref=e258]: "Failover:"
+                  - text: Multi-region deployment, active-passive or active-active.
+                - listitem [ref=e259]:
+                  - strong [ref=e260]: "RTO / RPO:"
+                  - text: Recovery Time Objective / Recovery Point Objective.
+              - heading "11. Trade-offs & Decisions" [level=2] [ref=e261]
+              - list [ref=e262]:
+                - listitem [ref=e263]:
+                  - strong [ref=e264]: Why microservices vs. monolithic?
+                - listitem [ref=e265]:
+                  - strong [ref=e266]: Why SQL vs. NoSQL?
+                - listitem [ref=e267]:
+                  - strong [ref=e268]: Why cloud provider X vs. Y?
+              - heading "12. Future Considerations" [level=2] [ref=e269]
+              - list [ref=e270]:
+                - listitem [ref=e271]: Planned upgrades, migration paths, or new feature impacts.
+              - separator [ref=e272]
+              - paragraph [ref=e273]:
+                - strong [ref=e274]: Please provide your project context
+                - text: (e.g., "We are building a customer management system with React, Node.js, and PostgreSQL on AWS"), and I will generate a
+                - strong [ref=e275]: specific, detailed architecture report
+                - text: for you.
+          - generic [ref=e276]:
+            - generic [ref=e277]:
+              - textbox "Ask anything about your documents..." [ref=e278]
+              - button [disabled] [ref=e279]:
+                - img [ref=e280]
+            - paragraph [ref=e283]: Press Enter to send • Shift+Enter for new line

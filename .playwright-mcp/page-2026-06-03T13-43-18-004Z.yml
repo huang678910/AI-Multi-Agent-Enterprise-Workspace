@@ -1,0 +1,134 @@
+- generic [ref=e1]:
+  - alert [ref=e38]
+  - generic [ref=e55]:
+    - complementary [ref=e56]:
+      - generic [ref=e57]:
+        - generic [ref=e58]: AI
+        - generic [ref=e59]:
+          - heading "AI Workspace" [level=1] [ref=e60]
+          - paragraph [ref=e61]: Enterprise Platform
+      - navigation [ref=e62]:
+        - link "Chat" [ref=e63] [cursor=pointer]:
+          - /url: /chat
+          - img [ref=e64]
+          - text: Chat
+        - link "Documents" [ref=e66] [cursor=pointer]:
+          - /url: /documents
+          - img [ref=e67]
+          - text: Documents
+        - link "Knowledge" [ref=e70] [cursor=pointer]:
+          - /url: /knowledge
+          - img [ref=e71]
+          - text: Knowledge
+        - link "Members" [ref=e75] [cursor=pointer]:
+          - /url: /members
+          - img [ref=e76]
+          - text: Members
+        - link "Reports" [ref=e81] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e82]
+          - text: Reports
+      - button "Sign Out" [ref=e86] [cursor=pointer]:
+        - img [ref=e87]
+        - text: Sign Out
+    - main [ref=e90]:
+      - generic [ref=e91]:
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - text: Workspace
+            - combobox [ref=e94]:
+              - option "E2E Test WS" [selected]
+              - option "E2E Test WS"
+              - option "E2E Test WS"
+              - option "E2E Test WS"
+            - button "+ New Workspace" [ref=e95] [cursor=pointer]
+          - generic [ref=e96]:
+            - generic [ref=e97]:
+              - generic [ref=e98]: Chats
+              - button "New Chat" [active] [ref=e99] [cursor=pointer]:
+                - img [ref=e100]
+            - generic [ref=e347] [cursor=pointer]:
+              - generic [ref=e348]:
+                - img [ref=e349]
+                - generic [ref=e351]: New Chat
+              - button [ref=e352]:
+                - img [ref=e353]
+            - generic [ref=e101] [cursor=pointer]:
+              - generic [ref=e102]:
+                - img [ref=e103]
+                - generic [ref=e105]: generate a system analysis report
+              - button [ref=e106]:
+                - img [ref=e107]
+            - generic [ref=e110] [cursor=pointer]:
+              - generic [ref=e111]:
+                - img [ref=e112]
+                - generic [ref=e114]: how many documents total in the database
+              - button [ref=e115]:
+                - img [ref=e116]
+            - generic [ref=e119] [cursor=pointer]:
+              - generic [ref=e120]:
+                - img [ref=e121]
+                - generic [ref=e123]: how many documents total in the database
+              - button [ref=e124]:
+                - img [ref=e125]
+            - generic [ref=e128] [cursor=pointer]:
+              - generic [ref=e129]:
+                - img [ref=e130]
+                - generic [ref=e132]: how many documents total in the database
+              - button [ref=e133]:
+                - img [ref=e134]
+            - generic [ref=e137] [cursor=pointer]:
+              - generic [ref=e138]:
+                - img [ref=e139]
+                - generic [ref=e141]: generate a system analysis report
+              - button [ref=e142]:
+                - img [ref=e143]
+            - generic [ref=e146] [cursor=pointer]:
+              - generic [ref=e147]:
+                - img [ref=e148]
+                - generic [ref=e150]: how many documents total in the database
+              - button [ref=e151]:
+                - img [ref=e152]
+            - generic [ref=e155] [cursor=pointer]:
+              - generic [ref=e156]:
+                - img [ref=e157]
+                - generic [ref=e159]: search the web for latest AI news
+              - button [ref=e160]:
+                - img [ref=e161]
+            - generic [ref=e164] [cursor=pointer]:
+              - generic [ref=e165]:
+                - img [ref=e166]
+                - generic [ref=e168]: search for documents about testing
+              - button [ref=e169]:
+                - img [ref=e170]
+            - generic [ref=e173] [cursor=pointer]:
+              - generic [ref=e174]:
+                - img [ref=e175]
+                - generic [ref=e177]: generate a system analysis report
+              - button [ref=e178]:
+                - img [ref=e179]
+            - generic [ref=e182] [cursor=pointer]:
+              - generic [ref=e183]:
+                - img [ref=e184]
+                - generic [ref=e186]: how many documents total in the database
+              - button [ref=e187]:
+                - img [ref=e188]
+        - generic [ref=e191]:
+          - generic [ref=e193]:
+            - heading "E2E Test WS WS Live" [level=2] [ref=e322]:
+              - text: E2E Test WS
+              - generic [ref=e195]: WS Live
+            - paragraph [ref=e197]: No description
+          - generic [ref=e199]:
+            - img [ref=e357]
+            - heading "Start a Conversation" [level=3] [ref=e359]
+            - paragraph [ref=e360]: Ask questions about your uploaded documents. The AI will search your knowledge base and provide answers with source references.
+            - generic [ref=e361]:
+              - generic [ref=e362]: Search Agent
+              - generic [ref=e364]: Chat Agent
+          - generic [ref=e295]:
+            - generic [ref=e296]:
+              - textbox "Ask anything about your documents..." [ref=e297]
+              - button [disabled] [ref=e298]:
+                - img [ref=e299]
+            - paragraph [ref=e302]: Press Enter to send • Shift+Enter for new line

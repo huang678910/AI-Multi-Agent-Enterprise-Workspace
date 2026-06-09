@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime, timezone
 
-from sqlalchemy import Integer, Text, DateTime, ForeignKey, Index
+from sqlalchemy import Integer, String, Text, DateTime, ForeignKey, Index
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.dialects.postgresql import UUID, JSONB
 from pgvector.sqlalchemy import Vector
@@ -32,6 +32,9 @@ class DocumentChunk(Base):
     content: Mapped[str] = mapped_column(Text, nullable=False)
     metadata_: Mapped[dict] = mapped_column(JSONB, default=dict, name="metadata")
     embedding = mapped_column(Vector(settings.EMBEDDING_DIM), nullable=True)
+    source_type: Mapped[str] = mapped_column(String(50), default="upload", server_default="upload")
+    content_type: Mapped[str] = mapped_column(String(50), default="text", server_default="text")
+    parent_chunk_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
     # Relationships

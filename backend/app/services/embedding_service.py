@@ -1,5 +1,16 @@
 """Embedding 服务 — 基于 sentence-transformers 的本地向量化"""
 
+import os
+# 仅在 Docker/生产环境开启离线模式（模型预装于 Dockerfile）
+# 本地开发：若未设置 HF_HUB_OFFLINE，允许从 HuggingFace 下载
+if os.environ.get("HF_HUB_OFFLINE") is None and os.environ.get("DOCKER_ENV") is None:
+    # 本地开发：使用国内镜像加速
+    os.environ.setdefault("HF_ENDPOINT", "https://hf-mirror.com")
+# Docker：保持离线模式
+if os.environ.get("DOCKER_ENV"):
+    os.environ.setdefault("HF_HUB_OFFLINE", "1")
+    os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
+
 import asyncio
 import logging
 from concurrent.futures import ThreadPoolExecutor
@@ -49,3 +60,30 @@ async def embed_single(text: str) -> list[float]:
     """异步编码单个文本"""
     results = await embed_texts([text])
     return results[0]
+
+
+# ---- LangChain Embeddings 适配器 ----
+
+
+_langchain_embeddings = None
+
+
+def get_langchain_embeddings():
+    """获取 LangChain HuggingFaceEmbeddings 实例（可选，用于 LangChain chain）"""
+    global _langchain_embeddings
+    if _langchain_embeddings is None:
+        try:
+            from langchain_huggingface import HuggingFaceEmbeddings
+            _langchain_embeddings = HuggingFaceEmbeddings(
+                model_name=settings.EMBEDDING_MODEL,
+                model_kwargs={"device": "cpu"},
+                encode_kwargs={"normalize_embeddings": True},
+            )
+            logger.info("LangChain HuggingFaceEmbeddings initialized")
+        except ImportError:
+            logger.warning(
+                "langchain-huggingface not installed — "
+                "get_langchain_embeddings() will return None"
+            )
+            return None
+    return _langchain_embeddings
