@@ -1,6 +1,7 @@
-"""企业分析中心 — 聚合 metrics + KPIs + Goals + AI 分析"""
+"""企业分析中心 — 聚合 metrics + KPIs + Goals + AI 分析（带缓存）"""
 
 import logging
+import time as _time
 from datetime import datetime, timezone
 from typing import Optional
 
@@ -12,12 +13,33 @@ from langchain_core.messages import SystemMessage, HumanMessage
 
 logger = logging.getLogger(__name__)
 
+# In-memory cache (TTL-based)
+_analysis_cache: dict[str, tuple[float, dict]] = {}
+CACHE_TTL = 3600  # 1 hour
+
 
 class AnalyticsService:
 
     def __init__(self, db: AsyncSession, workspace_id: str):
         self.db = db
         self.workspace_id = workspace_id
+
+    def _cache_key(self) -> str:
+        return f"analytics:ai_analysis:{self.workspace_id}"
+
+    def _get_cached(self) -> dict | None:
+        """从内存缓存读取（带 TTL 检查）"""
+        key = self._cache_key()
+        if key in _analysis_cache:
+            expiry, data = _analysis_cache[key]
+            if _time.time() < expiry:
+                return data
+            del _analysis_cache[key]  # Expired
+        return None
+
+    def _set_cached(self, analysis: dict) -> None:
+        """写入内存缓存"""
+        _analysis_cache[self._cache_key()] = (_time.time() + CACHE_TTL, analysis)
 
     async def get_dashboard_data(self) -> dict:
         """聚合仪表盘所需的所有数据"""
@@ -33,7 +55,7 @@ class AnalyticsService:
 
         # 2. Trends for top metrics
         trends = {}
-        top_metrics = snapshot_metrics[:6]  # Top 6 metrics
+        top_metrics = snapshot_metrics[:6]
         for m in top_metrics:
             data_points = await metrics_svc.get_trend(self.workspace_id, m.metric_name)
             if len(data_points) >= 2:
@@ -69,7 +91,8 @@ class AnalyticsService:
                 {
                     "id": str(k.id), "name": k.name, "category": k.category,
                     "current_value": k.current_value, "target_value": k.target_value,
-                    "unit": k.unit, "period": k.period, "last_updated": k.last_updated.isoformat() if k.last_updated else None,
+                    "unit": k.unit, "period": k.period,
+                    "last_updated": k.last_updated.isoformat() if k.last_updated else None,
                 }
                 for k in kpi_result.scalars().all()
             ]
@@ -83,23 +106,19 @@ class AnalyticsService:
                     "current_value": g.current_value, "progress_pct": g.progress_pct,
                     "start_date": g.start_date.isoformat() if g.start_date else None,
                     "end_date": g.end_date.isoformat() if g.end_date else None,
-                    "status": g.status,
+                    "status": g.status, "direction": g.direction,
                 }
                 for g in goal_result.scalars().all()
             ]
 
-        # 4. Alerts (rule-based)
         alerts = self._check_alerts(snapshot_metrics, kpis, goals)
-
-        # 5. AI Analysis (will be generated on demand via /analyze endpoint)
-        analysis = None
 
         return {
             "metrics_snapshot": snapshot,
             "trends": trends,
             "kpis": kpis,
             "goals": goals,
-            "analysis": analysis,
+            "analysis": None,
             "alerts": alerts,
         }
 
@@ -107,33 +126,28 @@ class AnalyticsService:
         """Rule-based alert generation"""
         alerts = []
 
-        # Check KPIs against target
         for kpi in kpis:
             if kpi["target_value"] and kpi["current_value"]:
                 ratio = kpi["current_value"] / kpi["target_value"] if kpi["target_value"] != 0 else 1
                 if ratio < 0.5:
                     alerts.append({
-                        "id": f"kpi_{kpi['id']}",
-                        "severity": "critical",
+                        "id": f"kpi_{kpi['id']}", "severity": "critical",
                         "metric_name": kpi["name"],
                         "message": f"{kpi['name']} is at {ratio*100:.0f}% of target ({kpi['current_value']} vs {kpi['target_value']} {kpi.get('unit','')})",
                         "threshold": kpi["target_value"],
                     })
                 elif ratio < 0.8:
                     alerts.append({
-                        "id": f"kpi_{kpi['id']}",
-                        "severity": "warning",
+                        "id": f"kpi_{kpi['id']}", "severity": "warning",
                         "metric_name": kpi["name"],
                         "message": f"{kpi['name']} is at {ratio*100:.0f}% of target",
                         "threshold": kpi["target_value"],
                     })
 
-        # Check goals below target
         for goal in goals:
             if goal["progress_pct"] is not None and goal["progress_pct"] < 30 and goal["status"] == "active":
                 alerts.append({
-                    "id": f"goal_{goal['id']}",
-                    "severity": "warning",
+                    "id": f"goal_{goal['id']}", "severity": "warning",
                     "metric_name": goal["title"],
                     "message": f"Goal '{goal['title']}' is only {goal['progress_pct']:.0f}% complete",
                     "threshold": None,
@@ -141,14 +155,19 @@ class AnalyticsService:
 
         return alerts
 
-    async def generate_ai_analysis(self, dashboard_data: dict | None = None) -> dict:
-        """调用 LLM 生成 AI 分析"""
+    async def generate_ai_analysis(self, dashboard_data: dict | None = None, force_refresh: bool = False) -> dict:
+        """调用 LLM 生成 AI 分析（内存缓存 1 小时）"""
+        # Check cache first
+        if not force_refresh:
+            cached = self._get_cached()
+            if cached:
+                logger.info(f"AI analysis returned from cache for workspace {self.workspace_id}")
+                return cached
+
         if dashboard_data is None:
             dashboard_data = await self.get_dashboard_data()
 
-        # Build context for LLM
         context_lines = ["Current Business Snapshot:"]
-
         metrics = dashboard_data.get("metrics_snapshot", {}).get("metrics", [])
         if metrics:
             for m in metrics:
@@ -176,7 +195,6 @@ class AnalyticsService:
                 context_lines.append(f"- [{a['severity']}] {a['message']}")
 
         context = "\n".join(context_lines)
-
         prompt = f"""As a business analyst, review the following business data and provide a concise analysis.
 
 {context}
@@ -197,7 +215,6 @@ Be data-driven, specific, and concise. If there is very little data, note what a
             response = await llm.ainvoke(messages)
             text = response.content.strip()
 
-            # Parse sections
             insights = []
             recommendations = []
             current_section = ""
@@ -215,12 +232,14 @@ Be data-driven, specific, and concise. If there is very little data, note what a
                     elif current_section == "recommendations":
                         recommendations.append(line.lstrip("- *"))
 
-            return {
+            result = {
                 "summary": text[:500],
                 "insights": insights[:5],
                 "recommendations": recommendations[:3],
                 "generated_at": datetime.now(timezone.utc).isoformat(),
             }
+            self._set_cached(result)
+            return result
         except Exception as e:
             logger.error(f"AI analysis generation failed: {e}")
             return {

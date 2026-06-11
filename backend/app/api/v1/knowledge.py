@@ -10,6 +10,7 @@ from app.api.deps import get_current_user, require_workspace_role
 from app.models.user import User
 from app.services.document_service import DocumentService
 from app.services.connectors.github_connector import GitHubConnector
+from app.services.connectors import CONNECTOR_REGISTRY
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/workspaces/{workspace_id}/knowledge", tags=["Knowledge Hub"])
@@ -19,7 +20,97 @@ async def _check_member(workspace_id: str, current_user: User, db: AsyncSession)
     await require_workspace_role(workspace_id, current_user, "member", db)
 
 
-# ─── GitHub Connector ─────────────────────────────────
+async def _ingest_connector_results(
+    db: AsyncSession,
+    workspace_id: str,
+    source_type: str,
+    items: list,
+) -> int:
+    """通用：将连接器结果写入知识库"""
+    doc_svc = DocumentService(db)
+    synced = 0
+    for item in items:
+        try:
+            doc = await doc_svc.create_document(
+                workspace_id=workspace_id,
+                filename=f"{source_type}:{item.title[:100]}",
+                file_type="markdown",
+                file_size=len(item.content.encode("utf-8")),
+                source_type=source_type,
+            )
+            from app.models.document_chunk import DocumentChunk
+            from app.services.embedding_service import embed_texts
+            chunk = DocumentChunk(
+                document_id=doc.id,
+                chunk_index=0,
+                content=item.content,
+                source_type=source_type,
+                content_type="text",
+                metadata_=item.metadata or {},
+            )
+            try:
+                embeddings = await embed_texts([item.content[:2000]])
+                if embeddings and embeddings[0]:
+                    chunk.embedding = embeddings[0]
+            except Exception as emb_err:
+                logger.warning(f"Embedding failed for {source_type} item: {emb_err}")
+            db.add(chunk)
+            synced += 1
+        except Exception as e:
+            logger.warning(f"Failed to ingest {source_type} item {item.title}: {e}")
+            continue
+    await db.flush()
+    return synced
+
+
+# ─── Generic Connector Endpoint ─────────────────────────
+
+CONNECTOR_FORMS = {
+    "github":    ["token", "owner", "repo"],
+    "notion":    ["api_key", "database_id"],
+    "jira":      ["email", "api_token", "domain", "project_key"],
+    "confluence": ["email", "api_token", "domain", "space_key"],
+}
+
+
+@router.post("/connect/{connector_type}")
+async def connect_external(
+    workspace_id: uuid.UUID,
+    connector_type: str,
+    body: dict,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """通用外部数据源连接器 — 支持 github / notion / jira / confluence"""
+    await _check_member(str(workspace_id), current_user, db)
+
+    if connector_type not in CONNECTOR_REGISTRY:
+        return {"error": f"Unsupported connector '{connector_type}'. Available: {list(CONNECTOR_REGISTRY.keys())}"}
+
+    # Validate required fields
+    required = CONNECTOR_FORMS.get(connector_type, [])
+    missing = [f for f in required if not body.get(f)]
+    if missing:
+        return {"error": f"Missing required fields: {', '.join(missing)}"}
+
+    # Create connector instance
+    ConnectorClass = CONNECTOR_REGISTRY[connector_type]
+    connector = ConnectorClass(body)
+
+    # Validate connection
+    if not await connector.validate_connection():
+        return {"error": f"Failed to connect to {connector_type}. Check your credentials."}
+
+    # Fetch + Ingest
+    items = await connector.fetch_all()
+    if not items:
+        return {"status": "ok", "synced": 0, "message": "No content found to sync."}
+
+    synced = await _ingest_connector_results(db, str(workspace_id), connector_type, items)
+    return {"status": "ok", "synced": synced, "message": f"Synced {synced} items from {connector_type}"}
+
+
+# ─── GitHub Connector (legacy endpoint preserved) ───────
 
 @router.post("/connect/github")
 async def connect_github(

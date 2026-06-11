@@ -7,7 +7,7 @@ interface UploadDropzoneProps {
   uploading: boolean;
 }
 
-const ACCEPTED_TYPES = ".pdf,.docx,.pptx,.txt,.md,.markdown,.ppt";
+const ACCEPTED_TYPES = ".pdf,.docx,.pptx,.ppt,.txt,.md,.markdown,.csv,.xlsx,.xls";
 
 export default function UploadDropzone({ onUpload, uploading }: UploadDropzoneProps) {
   const [isDragging, setIsDragging] = useState(false);
@@ -64,7 +64,7 @@ export default function UploadDropzone({ onUpload, uploading }: UploadDropzonePr
               Drop documents here or click to browse
             </p>
             <p className="text-xs text-gray-400 mt-1">
-              PDF, DOCX, PPTX, TXT, Markdown (max 50MB)
+              PDF, DOCX, PPTX, XLSX, CSV, TXT, Markdown (max 50MB)
             </p>
           </div>
         </div>

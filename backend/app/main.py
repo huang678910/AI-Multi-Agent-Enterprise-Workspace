@@ -75,7 +75,8 @@ async def lifespan(app: FastAPI):
         from app.agents.tools.report_generator_tool import generate_report
         from app.agents.tools.memory_tool import save_memory, recall_memory
         from app.agents.tools.graph_tool import query_graph, search_graph
-        for t in [search_knowledge_base, search_web, read_document, execute_python, query_database, generate_report, save_memory, recall_memory, query_graph, search_graph]:
+        from app.agents.tools.business_metrics_tool import query_metrics, get_metric_trend
+        for t in [search_knowledge_base, search_web, read_document, execute_python, query_database, generate_report, save_memory, recall_memory, query_graph, search_graph, query_metrics, get_metric_trend]:
             registry.register(t)
         logger.info(f"Tool registry initialized: {registry.count()} tools")
     except Exception:

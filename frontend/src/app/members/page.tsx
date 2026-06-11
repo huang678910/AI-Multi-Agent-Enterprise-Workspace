@@ -4,16 +4,15 @@ import { useRouter } from "next/navigation";
 import { Users, UserPlus, Trash2, Crown, User, Eye } from "lucide-react";
 import { useAuthStore, useWorkspaceStore } from "@/lib/stores";
 import {
-  listWorkspaces,
   listMembers,
   addMember,
   updateMemberRole,
   removeMember,
   searchUsers,
 } from "@/lib/api-client";
-import type { Workspace } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import WorkspaceSelector from "@/components/layout/WorkspaceSelector";
 
 interface Member {
   id: string;
@@ -36,7 +35,6 @@ export default function MembersPage() {
   const token = useAuthStore((s) => s.token);
   const { activeWorkspaceId, setActiveWorkspace } = useWorkspaceStore();
 
-  const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
@@ -53,19 +51,6 @@ export default function MembersPage() {
   useEffect(() => {
     if (!token) router.push("/login");
   }, [token, router]);
-
-  // Load workspaces
-  useEffect(() => {
-    if (!token) return;
-    listWorkspaces()
-      .then((d) => {
-        setWorkspaces(d.workspaces);
-        if (!activeWorkspaceId && d.workspaces.length > 0) {
-          setActiveWorkspace(d.workspaces[0].id);
-        }
-      })
-      .catch(() => {});
-  }, [token]);
 
   // Load members when workspace changes
   useEffect(() => {
@@ -182,16 +167,7 @@ export default function MembersPage() {
 
       {/* Workspace Selector */}
       <div className="mb-6">
-        <label className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Workspace</label>
-        <select
-          value={activeWorkspaceId || ""}
-          onChange={(e) => setActiveWorkspace(e.target.value)}
-          className="mt-1 w-full max-w-xs text-sm rounded-lg border border-gray-200 px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          {workspaces.map((w) => (
-            <option key={w.id} value={w.id}>{w.name}</option>
-          ))}
-        </select>
+        <WorkspaceSelector />
       </div>
 
       {/* Error */}

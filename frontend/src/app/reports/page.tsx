@@ -7,6 +7,7 @@ import { useAuthStore, useWorkspaceStore } from "@/lib/stores";
 import { listWorkspaces, deleteReport, listMembers } from "@/lib/api-client";
 import type { Workspace } from "@/types";
 import { Button } from "@/components/ui/button";
+import WorkspaceSelector from "@/components/layout/WorkspaceSelector";
 import api from "@/lib/api";
 
 interface Report {
@@ -92,11 +93,7 @@ export default function ReportsPage() {
       </div>
 
       <div className="mb-6">
-        <label className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Workspace</label>
-        <select value={activeWorkspaceId || ""} onChange={(e) => setActiveWorkspace(e.target.value)}
-          className="mt-1 w-full max-w-xs text-sm rounded-lg border border-gray-200 px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          {workspaces.map((w) => (<option key={w.id} value={w.id}>{w.name}</option>))}
-        </select>
+        <WorkspaceSelector />
       </div>
 
       {isLoading ? (

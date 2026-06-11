@@ -67,6 +67,27 @@ def parse_csv(filepath: str) -> str:
         raise ValueError(f"Failed to parse CSV: {e}")
 
 
+def parse_xlsx(filepath: str) -> str:
+    """解析 Excel (.xlsx/.xls) 文件为结构化文本"""
+    try:
+        import pandas as pd
+        # Read all sheets
+        xl = pd.ExcelFile(filepath)
+        parts = []
+        for sheet_name in xl.sheet_names:
+            df = pd.read_excel(filepath, sheet_name=sheet_name)
+            if df.empty:
+                continue
+            if len(df) > 500:
+                df = df.head(500)
+            parts.append(f"## Sheet: {sheet_name}\n{df.to_markdown(index=False)}")
+        return "\n\n".join(parts) if parts else "(Empty spreadsheet)"
+    except ImportError:
+        raise ImportError("pandas + openpyxl required for Excel parsing. Install: pip install pandas openpyxl")
+    except Exception as e:
+        raise ValueError(f"Failed to parse Excel: {e}")
+
+
 PARSERS = {
     ".pdf": parse_pdf,
     ".docx": parse_docx,
@@ -76,6 +97,8 @@ PARSERS = {
     ".md": parse_txt,
     ".markdown": parse_txt,
     ".csv": parse_csv,
+    ".xlsx": parse_xlsx,
+    ".xls": parse_xlsx,
 }
 
 SUPPORTED_TYPES = set(PARSERS.keys())

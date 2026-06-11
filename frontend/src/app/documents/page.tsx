@@ -6,6 +6,7 @@ import { listWorkspaces, listDocuments, uploadDocument, deleteDocument } from "@
 import type { Workspace, Document } from "@/types";
 import UploadDropzone from "@/components/documents/UploadDropzone";
 import DocumentCard from "@/components/documents/DocumentCard";
+import WorkspaceSelector from "@/components/layout/WorkspaceSelector";
 
 export default function DocumentsPage() {
   const router = useRouter();
@@ -75,15 +76,7 @@ export default function DocumentsPage() {
 
       {/* Workspace Selector */}
       <div className="mb-6">
-        <select
-          value={activeWorkspaceId || ""}
-          onChange={(e) => setActiveWorkspace(e.target.value)}
-          className="text-sm rounded-lg border border-gray-200 px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          {workspaces.map((w) => (
-            <option key={w.id} value={w.id}>{w.name}</option>
-          ))}
-        </select>
+        <WorkspaceSelector />
       </div>
 
       {/* Upload Area */}

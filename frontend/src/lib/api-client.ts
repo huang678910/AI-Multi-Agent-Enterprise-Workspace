@@ -233,6 +233,10 @@ export async function createProduct(ws: string, data: Partial<ProdData>): Promis
 export async function deleteProduct(ws: string, id: string): Promise<void> {
   await api.delete(`/api/v1/workspaces/${ws}/company/products/${id}`);
 }
+export async function updateProduct(ws: string, id: string, data: Partial<ProdData>): Promise<ProdData> {
+  const res = await api.put(`/api/v1/workspaces/${ws}/company/products/${id}`, data);
+  return res.data;
+}
 
 // ─── Customers ────────────────────────────────────────
 
@@ -253,6 +257,10 @@ export async function createCustomer(ws: string, data: Partial<CustData>): Promi
 export async function deleteCustomer(ws: string, id: string): Promise<void> {
   await api.delete(`/api/v1/workspaces/${ws}/company/customers/${id}`);
 }
+export async function updateCustomer(ws: string, id: string, data: Partial<CustData>): Promise<CustData> {
+  const res = await api.put(`/api/v1/workspaces/${ws}/company/customers/${id}`, data);
+  return res.data;
+}
 
 // ─── Business Processes ───────────────────────────────
 
@@ -272,6 +280,10 @@ export async function createProcess(ws: string, data: Partial<ProcData>): Promis
 }
 export async function deleteProcess(ws: string, id: string): Promise<void> {
   await api.delete(`/api/v1/workspaces/${ws}/company/processes/${id}`);
+}
+export async function updateProcess(ws: string, id: string, data: Partial<ProcData>): Promise<ProcData> {
+  const res = await api.put(`/api/v1/workspaces/${ws}/company/processes/${id}`, data);
+  return res.data;
 }
 
 // ─── Company Goals ────────────────────────────────────
