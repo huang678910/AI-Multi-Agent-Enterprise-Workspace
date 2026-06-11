@@ -279,7 +279,8 @@ export async function deleteProcess(ws: string, id: string): Promise<void> {
 export interface GoalData {
   id: string; company_id: string; type: string; title: string;
   description?: string; target_value?: number; current_value?: number;
-  progress_pct: number; start_date?: string; end_date?: string;
+  progress_pct: number; direction?: string;  // "higher" = 越高越好, "lower" = 越低越好
+  start_date?: string; end_date?: string;
   status: string; created_at: string; updated_at: string;
 }
 
@@ -359,6 +360,72 @@ export async function createMemoryEvent(ws: string, data: Partial<MemoryEventRes
 }
 export async function deleteMemoryEvent(ws: string, id: string): Promise<void> {
   await api.delete(`/api/v1/workspaces/${ws}/memories/events/${id}`);
+}
+
+// ─── Business Metrics (Digital Twin) ───────────────────
+
+export interface MetricData {
+  id: string; company_id: string; metric_name: string; metric_value: number;
+  unit?: string; period?: string; recorded_at?: string; category?: string;
+  tags: Record<string, string>; notes?: string; created_at?: string;
+}
+
+export async function recordMetric(ws: string, data: {
+  metric_name: string; metric_value: number; unit?: string; period?: string;
+  category?: string; tags?: Record<string, string>; notes?: string;
+}): Promise<MetricData> {
+  const res = await api.post(`/api/v1/workspaces/${ws}/metrics/record`, data);
+  return res.data;
+}
+
+export async function batchRecordMetrics(ws: string, metrics: Array<{
+  metric_name: string; metric_value: number; unit?: string; period?: string;
+  category?: string; tags?: Record<string, string>; notes?: string;
+}>): Promise<{ metrics: MetricData[]; total: number }> {
+  const res = await api.post(`/api/v1/workspaces/${ws}/metrics/batch`, { metrics });
+  return res.data;
+}
+
+export async function listMetrics(ws: string, category?: string): Promise<MetricData[]> {
+  const res = await api.get(`/api/v1/workspaces/${ws}/metrics`, { params: category ? { category } : {} });
+  return res.data.metrics;
+}
+
+export async function getMetricSnapshot(ws: string): Promise<{ metrics: MetricData[]; generated_at: string }> {
+  const res = await api.get(`/api/v1/workspaces/${ws}/metrics/snapshot`);
+  return res.data;
+}
+
+export async function getMetricTrend(ws: string, name: string, periods = 6): Promise<{
+  metric_name: string; unit?: string; data_points: Array<{ period: string; value: number }>;
+  change_pct?: number; trend_direction?: string;
+}> {
+  const res = await api.get(`/api/v1/workspaces/${ws}/metrics/trend/${encodeURIComponent(name)}`, { params: { periods } });
+  return res.data;
+}
+
+export async function deleteMetric(ws: string, id: string): Promise<void> {
+  await api.delete(`/api/v1/workspaces/${ws}/metrics/${id}`);
+}
+
+// ─── Analytics Center ──────────────────────────────────
+
+export async function getDashboard(ws: string): Promise<{
+  metrics_snapshot: unknown; trends: Record<string, unknown>;
+  kpis: unknown[]; goals: unknown[]; analysis: unknown; alerts: unknown[];
+}> {
+  const res = await api.get(`/api/v1/workspaces/${ws}/analytics/dashboard`);
+  return res.data;
+}
+
+export async function triggerAnalysis(ws: string): Promise<unknown> {
+  const res = await api.post(`/api/v1/workspaces/${ws}/analytics/analyze`);
+  return res.data;
+}
+
+export async function getAlerts(ws: string): Promise<unknown[]> {
+  const res = await api.get(`/api/v1/workspaces/${ws}/analytics/alerts`);
+  return res.data;
 }
 
 // ─── Knowledge Graph ──────────────────────────────────

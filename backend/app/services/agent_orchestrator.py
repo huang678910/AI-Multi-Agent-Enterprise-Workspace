@@ -22,6 +22,8 @@ def _ensure_nodes():
         from app.agents.supervisor import (
             search_node, chat_node, research_node,
             analyst_node, writer_node, sql_node, profile_node, memory_node,
+            ceo_node, finance_node, sales_node, hr_node,
+            customer_node, operations_node, procurement_node,
         )
         AGENT_NODES["search"] = search_node
         AGENT_NODES["chat"] = chat_node
@@ -31,6 +33,13 @@ def _ensure_nodes():
         AGENT_NODES["sql"] = sql_node
         AGENT_NODES["profile"] = profile_node
         AGENT_NODES["memory"] = memory_node
+        AGENT_NODES["ceo"] = ceo_node
+        AGENT_NODES["finance"] = finance_node
+        AGENT_NODES["sales"] = sales_node
+        AGENT_NODES["hr"] = hr_node
+        AGENT_NODES["customer"] = customer_node
+        AGENT_NODES["operations"] = operations_node
+        AGENT_NODES["procurement"] = procurement_node
         logger.info(f"Agent nodes loaded: {list(AGENT_NODES.keys())}")
     except Exception as e:
         logger.error(f"Failed to load agent nodes: {e}", exc_info=True)
@@ -144,25 +153,64 @@ class AgentOrchestrator:
             except Exception as e:
                 logger.warning(f"Company profile load failed (non-blocking): {e}")
 
-            # 5.7. Pre-populate document list (so AI knows what files are available)
+            # 5.7. Pre-populate document list + direct filename match
             try:
                 from app.database import AsyncSessionLocal as DocListSession
                 from sqlalchemy import select as sa_select
                 from app.models.document import Document as DocModel
+                from app.models.document_chunk import DocumentChunk as DcModel
                 async with DocListSession() as s:
                     doc_result = await s.execute(
-                        sa_select(DocModel.filename, DocModel.file_type, DocModel.source_type)
+                        sa_select(DocModel.id, DocModel.filename, DocModel.file_type, DocModel.source_type)
                         .where(DocModel.workspace_id == self.workspace_id)
                         .order_by(DocModel.created_at.desc())
                         .limit(20)
                     )
                     docs = doc_result.all()
                     if docs:
-                        doc_list = "\n".join(f"- [{d[2]}] {d[0]} ({d[1]})" for d in docs)
+                        doc_list = "\n".join(f"- [{d[3]}] {d[1]} ({d[2]})" for d in docs)
                         existing = state.get("context_text", "")
                         state["context_text"] = (existing + "\n\n### Available Documents\n" + doc_list) if existing else ("### Available Documents\n" + doc_list)
+
+                        # Direct filename match: if user mentions a specific document name, inject its content
+                        msg_lower = message.lower()
+                        for d in docs:
+                            doc_id, filename = d[0], d[1]
+                            # Check if filename (or any part of it) appears in user message
+                            if filename.lower() in msg_lower or any(
+                                part in msg_lower for part in filename.lower().replace('.',' ').replace('_',' ').split()
+                                if len(part) > 3
+                            ):
+                                chunk_result = await s.execute(
+                                    sa_select(DcModel.content)
+                                    .where(DcModel.document_id == doc_id)
+                                    .order_by(DcModel.chunk_index)
+                                    .limit(5)
+                                )
+                                chunks = chunk_result.scalars().all()
+                                if chunks:
+                                    full_text = "\n\n---\n\n".join(chunks)
+                                    existing2 = state.get("context_text", "")
+                                    state["context_text"] = existing2 + f"\n\n### Document Content: {filename}\n{full_text[:3000]}"
+                                    yield {"type": "status", "content": f"Loaded document: {filename}", "agent": "search"}
+                                    break  # Only inject one matched document
             except Exception as e:
                 logger.warning(f"Document list load failed (non-blocking): {e}")
+
+            # 5.8. Pre-populate Digital Twin metrics context (for department agents)
+            try:
+                yield {"type": "status", "content": "Loading business metrics...", "agent": "search"}
+                from app.database import AsyncSessionLocal as MetricsSessionLocal
+                from app.services.business_metrics_service import BusinessMetricsService
+                async with MetricsSessionLocal() as s:
+                    metrics_svc = BusinessMetricsService(s)
+                    metrics_ctx = await metrics_svc.get_ai_analysis_context(self.workspace_id)
+                    if metrics_ctx:
+                        existing = state.get("context_text", "")
+                        state["context_text"] = metrics_ctx + "\n\n" + existing if existing else metrics_ctx
+                        yield {"type": "status", "content": "Business metrics loaded", "agent": "search"}
+            except Exception as e:
+                logger.warning(f"Business metrics load failed (non-blocking): {e}")
 
             # 6. Execute agent pipeline - loop over agents in sequence
             for i, agent_name in enumerate(agent_pipeline):

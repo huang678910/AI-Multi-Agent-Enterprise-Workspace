@@ -66,9 +66,14 @@ export default function MemoriesPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!workspaceId || !confirm("Delete this memory?")) return;
-    await deleteMemory(workspaceId, id);
-    loadMemories();
+    if (!workspaceId || !confirm("Delete this memory? (Admin only)")) return;
+    try {
+      await deleteMemory(workspaceId, id);
+      loadMemories();
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Delete failed";
+      alert("Delete failed: " + msg + "\n\nOnly workspace admins can delete memories.");
+    }
   };
 
   const handleRecall = async () => {

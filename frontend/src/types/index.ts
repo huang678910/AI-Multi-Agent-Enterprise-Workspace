@@ -123,3 +123,63 @@ export interface WSClientMessage {
     content: string;
   };
 }
+
+// ---- Business Metrics (Digital Twin) ----
+export interface BusinessMetric {
+  id: string;
+  company_id: string;
+  metric_name: string;
+  metric_value: number;
+  unit?: string;
+  period?: string;
+  recorded_at?: string;
+  category?: string;
+  tags: Record<string, string>;
+  notes?: string;
+  created_at?: string;
+}
+
+export interface MetricTrendPoint {
+  period: string;
+  value: number;
+  recorded_at?: string;
+}
+
+export interface MetricTrend {
+  metric_name: string;
+  unit?: string;
+  data_points: MetricTrendPoint[];
+  change_pct?: number;
+  trend_direction?: string;
+}
+
+export interface MetricSnapshot {
+  company_id: string;
+  metrics: BusinessMetric[];
+  generated_at?: string;
+}
+
+// ---- Analytics Dashboard ----
+export interface DashboardData {
+  metrics_snapshot: MetricSnapshot;
+  trends: Record<string, MetricTrend>;
+  kpis: unknown[];
+  goals: unknown[];
+  analysis?: AnalysisResult;
+  alerts: Alert[];
+}
+
+export interface AnalysisResult {
+  summary: string;
+  insights: string[];
+  recommendations: string[];
+  generated_at: string;
+}
+
+export interface Alert {
+  id: string;
+  severity: "critical" | "warning" | "info";
+  metric_name: string;
+  message: string;
+  threshold?: number;
+}

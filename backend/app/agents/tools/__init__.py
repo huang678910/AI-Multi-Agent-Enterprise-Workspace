@@ -6,6 +6,7 @@ from app.agents.tools.sql_tool import query_database
 from app.agents.tools.report_generator_tool import generate_report
 from app.agents.tools.memory_tool import save_memory, recall_memory
 from app.agents.tools.graph_tool import query_graph, search_graph
+from app.agents.tools.business_metrics_tool import query_metrics, get_metric_trend
 from app.agents.tools.tool_registry import get_tool_registry, ToolRegistry
 
 __all__ = [
@@ -19,6 +20,8 @@ __all__ = [
     "recall_memory",
     "query_graph",
     "search_graph",
+    "query_metrics",
+    "get_metric_trend",
     "get_tool_registry",
     "ToolRegistry",
 ]

@@ -51,11 +51,13 @@ export default function DocumentsPage() {
 
   async function handleDelete(docId: string) {
     if (!activeWorkspaceId) return;
+    if (!confirm("Delete this document? (Admin only)")) return;
     try {
       await deleteDocument(activeWorkspaceId, docId);
       setDocuments((prev) => prev.filter((d) => d.id !== docId));
-    } catch (err) {
-      console.error("Delete failed:", err);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Delete failed";
+      alert("Delete failed: " + msg + "\n\nOnly workspace admins can delete documents.");
     }
   }
 

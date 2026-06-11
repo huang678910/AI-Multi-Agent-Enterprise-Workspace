@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MessageSquare, FileText, Database, Users, FileBarChart, Settings, Building2, Share2, Brain, LogOut } from "lucide-react";
+import { MessageSquare, FileText, Database, Users, FileBarChart, Settings, Building2, Share2, Brain, LogOut, BarChart3 } from "lucide-react";
 import { useAuthStore } from "@/lib/stores";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -13,6 +13,7 @@ const navItems = [
   { href: "/graph", label: "Graph", icon: Share2 },
   { href: "/memories", label: "Memories", icon: Brain },
   { href: "/members", label: "Members", icon: Users },
+  { href: "/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/reports", label: "Reports", icon: FileBarChart },
 ];
 
@@ -21,6 +22,7 @@ const settingsItems = [
   { href: "/settings/org", label: "Organization" },
   { href: "/settings/business", label: "Business" },
   { href: "/settings/goals", label: "Goals & KPIs" },
+  { href: "/settings/metrics", label: "Metrics" },
 ];
 
 export default function Sidebar() {

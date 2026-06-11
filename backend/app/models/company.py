@@ -42,6 +42,7 @@ class Company(Base):
     business_processes = relationship("BusinessProcess", back_populates="company", cascade="all, delete-orphan")
     goals = relationship("CompanyGoal", back_populates="company", cascade="all, delete-orphan")
     kpis = relationship("CompanyKPI", back_populates="company", cascade="all, delete-orphan")
+    business_metrics = relationship("BusinessMetric", back_populates="company", cascade="all, delete-orphan")
 
 
 class Department(Base):
@@ -216,6 +217,7 @@ class CompanyGoal(Base):
     target_value: Mapped[float | None] = mapped_column(Float(), nullable=True)
     current_value: Mapped[float | None] = mapped_column(Float(), nullable=True)
     progress_pct: Mapped[float] = mapped_column(Float(), default=0, server_default="0")
+    direction: Mapped[str] = mapped_column(String(10), default="higher", server_default="higher")  # "higher" = 越高越好, "lower" = 越低越好（如退货率、成本）
     start_date: Mapped[date | None] = mapped_column(Date(), nullable=True)
     end_date: Mapped[date | None] = mapped_column(Date(), nullable=True)
     status: Mapped[str] = mapped_column(String(50), default="active", server_default="active")

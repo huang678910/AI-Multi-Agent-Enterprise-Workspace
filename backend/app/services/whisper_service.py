@@ -13,14 +13,17 @@ _whisper_model = None
 def _get_model():
     global _whisper_model
     if _whisper_model is None:
-        try:
-            import whisper
-            # small model (244M) — minimum for decent Chinese transcription
-            # medium (769M) recommended for production, large (1.5G) for best accuracy
-            _whisper_model = whisper.load_model("small")
-            logger.info("Whisper model loaded (small)")
-        except Exception as e:
-            logger.warning(f"Whisper model load failed: {e}. Audio transcription will be unavailable.")
+        import whisper
+        # Try small first (461MB, best Chinese quality), fall back to base (138MB)
+        for model_name in ["small", "base"]:
+            try:
+                _whisper_model = whisper.load_model(model_name)
+                logger.info(f"Whisper model loaded ({model_name})")
+                break
+            except Exception as e:
+                logger.warning(f"Whisper {model_name} load failed: {e}")
+        else:
+            logger.warning("Whisper model unavailable. Audio transcription disabled.")
             _whisper_model = False
     return _whisper_model if _whisper_model is not False else None
 

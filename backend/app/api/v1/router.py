@@ -14,6 +14,8 @@ from app.api.v1.company import router as company_router
 from app.api.v1.memories import router as memories_router
 from app.api.v1.graph import router as graph_router
 from app.api.v1.knowledge import router as knowledge_router
+from app.api.v1.metrics import router as metrics_router
+from app.api.v1.analytics import router as analytics_router
 
 api_router = APIRouter(prefix="/api/v1")
 
@@ -31,3 +33,5 @@ api_router.include_router(company_router)
 api_router.include_router(memories_router)
 api_router.include_router(graph_router)
 api_router.include_router(knowledge_router)
+api_router.include_router(metrics_router)
+api_router.include_router(analytics_router)

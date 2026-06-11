@@ -10,7 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, ArrowUp, ArrowDown } from "lucide-react";
 import WorkspaceSelector from "@/components/layout/WorkspaceSelector";
 
 export default function GoalsSettingsPage() {
@@ -21,7 +21,7 @@ export default function GoalsSettingsPage() {
   const [error, setError] = useState("");
 
   const [goals, setGoals] = useState<GoalData[]>([]);
-  const [newGoal, setNewGoal] = useState({ title: "", type: "KPI", target_value: "", current_value: "" });
+  const [newGoal, setNewGoal] = useState({ title: "", type: "KPI", target_value: "", current_value: "", direction: "higher" });
   const [savingGoal, setSavingGoal] = useState(false);
 
   const [kpis, setKPIs] = useState<KPIData[]>([]);
@@ -41,12 +41,25 @@ export default function GoalsSettingsPage() {
 
   useEffect(() => { loadAll(); }, [loadAll]);
 
-  // Auto-calculate progress from current/target values
-  const calcProgress = (current: string, target: string): number => {
+  // Auto-calculate progress from current/target values, respecting direction
+  const calcProgress = (current: string, target: string, direction: string): number => {
     const c = parseFloat(current);
     const t = parseFloat(target);
     if (!t || t === 0) return 0;
+    if (direction === "lower") {
+      // 越低越好: target/current when current > target, else 100%
+      return c <= t ? 100 : Math.round((t / c) * 100);
+    }
+    // 越高越好 (default): current/target, capped at 100
     return Math.min(100, Math.round((c / t) * 100));
+  };
+
+  // Bar color based on direction + progress
+  const getBarColor = (pct: number, direction: string) => {
+    if (direction === "lower") {
+      return pct >= 100 ? "bg-green-500" : pct >= 70 ? "bg-amber-500" : "bg-red-500";
+    }
+    return pct >= 80 ? "bg-green-500" : pct >= 50 ? "bg-blue-500" : pct >= 25 ? "bg-amber-500" : "bg-red-500";
   };
 
   const handleCreateGoal = async () => {
@@ -55,15 +68,16 @@ export default function GoalsSettingsPage() {
     setSavingGoal(true);
     setError("");
     try {
-      const progress = calcProgress(newGoal.current_value, newGoal.target_value);
+      const progress = calcProgress(newGoal.current_value, newGoal.target_value, newGoal.direction);
       await createGoal(workspaceId, {
         title: newGoal.title,
         type: newGoal.type,
         target_value: newGoal.target_value ? parseFloat(newGoal.target_value) : null,
         current_value: newGoal.current_value ? parseFloat(newGoal.current_value) : null,
         progress_pct: progress,
+        direction: newGoal.direction,
       });
-      setNewGoal({ title: "", type: "KPI", target_value: "", current_value: "" });
+      setNewGoal({ title: "", type: "KPI", target_value: "", current_value: "", direction: "higher" });
       loadAll();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Failed to create goal";
@@ -140,6 +154,20 @@ export default function GoalsSettingsPage() {
                 onChange={(e) => setNewGoal({ ...newGoal, target_value: e.target.value })} className="w-24" />
               <Input placeholder="Current" type="number" value={newGoal.current_value}
                 onChange={(e) => setNewGoal({ ...newGoal, current_value: e.target.value })} className="w-24" />
+              {/* Direction toggle */}
+              <button
+                type="button"
+                onClick={() => setNewGoal({ ...newGoal, direction: newGoal.direction === "higher" ? "lower" : "higher" })}
+                className={`flex items-center gap-1 text-xs px-2 py-1.5 rounded-lg border transition-colors ${
+                  newGoal.direction === "higher"
+                    ? "border-green-200 bg-green-50 text-green-700"
+                    : "border-red-200 bg-red-50 text-red-700"
+                }`}
+                title={newGoal.direction === "higher" ? "越高越好（如营收、利润）" : "越低越好（如退货率、成本）"}
+              >
+                {newGoal.direction === "higher" ? <ArrowUp size={12} /> : <ArrowDown size={12} />}
+                {newGoal.direction === "higher" ? "↑" : "↓"}
+              </button>
               <Button size="sm" onClick={handleCreateGoal} disabled={savingGoal}>
                 <Plus size={14} className="mr-1" /> {savingGoal ? "Adding..." : "Add"}
               </Button>
@@ -147,7 +175,19 @@ export default function GoalsSettingsPage() {
             {goals.map((g) => (
               <div key={g.id} className="p-3 rounded border border-gray-100 hover:bg-gray-50 group">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">{g.title}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium">{g.title}</span>
+                    {g.direction === "lower" && (
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-red-50 text-red-500 flex items-center gap-0.5" title="越低越好">
+                        <ArrowDown size={10} /> lower
+                      </span>
+                    )}
+                    {g.direction !== "lower" && (
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-50 text-green-500 flex items-center gap-0.5" title="越高越好">
+                        <ArrowUp size={10} /> higher
+                      </span>
+                    )}
+                  </div>
                   <div className="flex items-center gap-2">
                     <span className={`text-xs px-2 py-0.5 rounded-full ${
                       g.type === "OKR" ? "bg-blue-50 text-blue-600" : g.type === "MBO" ? "bg-purple-50 text-purple-600" : "bg-green-50 text-green-600"
@@ -158,7 +198,7 @@ export default function GoalsSettingsPage() {
                 </div>
                 <div className="flex items-center gap-3 mt-2">
                   <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-500 rounded-full transition-all"
+                    <div className={`h-full rounded-full transition-all ${getBarColor(g.progress_pct || 0, g.direction || "higher")}`}
                       style={{ width: `${Math.min(100, g.progress_pct || 0)}%` }} />
                   </div>
                   <span className="text-xs text-gray-500 w-10 text-right">{g.progress_pct || 0}%</span>

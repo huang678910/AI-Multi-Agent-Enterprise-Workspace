@@ -1,0 +1,95 @@
+一、Settings > Company（企业基本信息）
+字段	填入值
+Company Name *	星辰玩具有限公司
+Industry	跨境电商
+Description	专注儿童益智玩具设计、制造与跨境销售，主打欧美市场。2020年成立于深圳，现有员工120人，年营收约5000万人民币。旗下拥有自主品牌 StarKids，通过 Amazon、独立站、TikTok Shop 三大渠道覆盖美国、英国、德国、法国市场。
+Founded Year	2020
+Employees	120
+Headquarters	深圳
+Target Markets (comma-separated)	US, UK, Germany, France
+Website	https://starkids-toys.com
+二、Settings > Organization > Departments（部门）
+#	部门名称	类型	上级部门
+1	运营部	Operations	无
+2	采购部	Procurement	无
+3	市场部	Marketing	无
+4	产品研发部	R&D	无
+5	财务部	Finance	无
+6	客服部	Service	无
+7	仓储物流部	Warehouse	无
+8	美国市场组	Sales	市场部
+9	欧洲市场组	Sales	市场部
+三、Settings > Organization > Positions（职位表）
+#	职位名称	级别	所属部门
+1	运营总监	Director	运营部
+2	采购经理	Manager	采购部
+3	市场总监	Director	市场部
+4	产品经理	Manager	产品研发部
+5	财务主管	Manager	财务部
+6	客服主管	Supervisor	客服部
+7	仓储主管	Supervisor	仓储物流部
+8	市场专员	Staff	美国市场组
+9	设计师	Staff	产品研发部
+10	采购专员	Staff	采购部
+四、Settings > Organization > Employees（员工表）
+#	姓名	邮箱	所属部门	职位
+1	张明远	zhangmingyuan@starkids.com	运营部	运营总监
+2	李雪琴	lixueqin@starkids.com	采购部	采购经理
+3	王浩然	wanghaoran@starkids.com	市场部	市场总监
+4	陈思远	chensiyuan@starkids.com	产品研发部	产品经理
+5	赵丽华	zhaolihua@starkids.com	财务部	财务主管
+6	刘佳琪	liujiaqi@starkids.com	客服部	客服主管
+7	周国强	zhouguoqiang@starkids.com	仓储物流部	仓储主管
+8	林子涵	linzihan@starkids.com	美国市场组	市场专员
+9	吴若曦	wuruoxi@starkids.com	产品研发部	设计师
+10	杨建平	yangjianping@starkids.com	采购部	采购专员
+五、Settings > Business > Products
+#	产品名称	分类	目标市场(逗号分隔)
+1	StarKids 磁力积木 100粒套装	Building Toys	US, UK
+2	StarKids 儿童编程机器人	STEM Toys	US, Germany, France
+3	StarKids 木质拼图农场系列	Puzzle	UK, Germany
+4	StarKids 早教音乐琴	Musical Toys	US, France
+5	StarKids 恐龙模型套装	Figure Toys	US, UK, Germany
+6	StarKids 水画布涂鸦垫	Art Toys	France, UK
+六、Settings > Business > Customers
+#	客户名称	市场	类型	邮箱
+1	Amazon US Marketplace	US	Platform	seller-support@amazon.com
+2	Amazon UK Marketplace	UK	Platform	seller-support-uk@amazon.com
+3	TikTok Shop US	US	Platform	partners@tiktokshop.com
+4	KinderSpiel GmbH	Germany	Distributor	orders@kinderspiel.de
+5	Jouets Magiques SARL	France	Retail Chain	contact@jouetsmagiques.fr
+6	ToyMaster Wholesale	UK	Wholesale	sales@toymaster-wholesale.co.uk
+七、Settings > Business > Processes
+#	流程名称	描述
+1	新品开发流程	市场调研 → 概念设计 → 3D建模 → 打样 → 安全测试 → 量产 → 上市
+2	跨境订单履约	订单接收 → 库存检查 → 拣货 → 打包 → 国际物流 → 清关 → 尾程配送
+3	客户退货处理	退货申请 → 审核 → RMA生成 → 退货入库 → 质检 → 退款/换货
+4	供应商评估流程	资质审核 → 样品测试 → 工厂验厂 → 小批量试单 → 正式合作
+八、Settings > Goals & KPIs > Goals
+#	目标名称	类型	目标值	当前值
+1	2026年度营收突破8000万	KPI	8000	5200
+2	Q3开拓日本市场	OKR	100	30
+3	客户满意度达到95%	KPI	95	91
+4	新品上市6款	OKR	6	3
+5	退货率控制在5%以下	MBO	5	7.2
+九、Settings > Goals & KPIs > KPIs
+#	KPI名称	类别	当前值	目标值	单位	周期
+1	月销售额	Revenue	433	667	万元	Monthly
+2	毛利率	Profit	42	48	%	Monthly
+3	月订单数	Orders	3850	5000	单	Monthly
+4	库存周转率	Inventory	6.5	8	次/年	Quarterly
+5	客户复购率	Customer	28	35	%	Monthly
+6	退货率	Quality	7.2	5	%	Monthly
+7	物流准时率	Logistics	89	95	%	Monthly
+消息 1（战略决策 — episodic）
+2026年3月管理层会议决议：由于美国市场关税从10%上调至25%，我们决定将美国仓储从FBA全面转为自建海外仓。初期在洛杉矶租用2000平米仓库，预计Q3前完成转移，可降低物流成本约18%。
+消息 2（市场决策 — episodic）
+2026年Q2战略复盘：日本市场拓展试点失败。原计划投入200万营销预算，但三个月仅获2300个订单，客户获取成本高达870元/单，远超我们150元的基准线。管理层投票5:2决定正式退出日本市场，资源重新分配到英国和德国。
+消息 3（产品事实 — semantic）
+产品体系更新：我们的旗舰产品 StarKids 磁力积木100粒套装已通过欧盟EN71和CE安全认证。该产品目前占公司总营收的38%，平均复购率31%，主要销往美国和英国市场。2026年计划推出同系列的200粒升级版。
+消息 4（组织事实 — semantic）
+公司组织调整：2026年1月新成立数据运营部，由原市场部高级分析师陈思远担任负责人。该部门直接向CEO张明远汇报，负责全公司的数据分析、销售预测和库存优化。目前已招聘3人，年底计划扩至8人。
+消息 5（客户关系 — episodic）
+2026年4月重大客户合作：我们与德国分销商KinderSpiel GmbH签署了独家代理协议。KinderSpiel承诺年度最低采购额200万欧元，我们给予其德国市场独家分销权和5%的价格优惠。合同期3年，预计可贡献年营收增长12%。
+消息 6（KPI 事实 — long-term）
+2026年上半年业绩数据：1-6月总营收3200万元，同比增长47%。毛利率从去年同期的38%提升至42%，主要得益于自建海外仓降低了物流成本。退货率从8.5%下降至7.2%。目前公司现金流健康，账面现金1800万元。

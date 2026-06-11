@@ -89,6 +89,6 @@ async def delete_document(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    """删除文档及其所有 Chunks（需要 member 以上权限）"""
-    await require_workspace_role(workspace_id, current_user, "member", db)
+    """删除文档及其所有 Chunks（需要 admin 权限）"""
+    await require_workspace_role(workspace_id, current_user, "admin", db)
     await DocumentService(db).delete(document_id)

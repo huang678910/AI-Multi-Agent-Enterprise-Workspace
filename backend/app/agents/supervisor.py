@@ -48,24 +48,24 @@ Available agents and their capabilities:
 - "chat": Simple conversation, greetings, explanations.
 - "profile": Company/organization questions ("tell me about our company", "what departments do we have", "list our products", "who works in sales").
 - "memory": Past events, decisions, historical context ("what did we decide about X", "remember when Y happened", "what are our key facts about Z").
+- "ceo": Strategic analysis, business health, market assessment, risk evaluation, resource allocation. Use for broad strategic questions.
+- "finance": Revenue, profit, budget, costs, cashflow, financial analysis, ROI. Use for financial/numerical business questions.
+- "sales": Sales performance, pipeline, customer acquisition, revenue growth, pricing. Use for sales-related questions.
+- "hr": Hiring, headcount, organization structure, team optimization, recruitment. Use for workforce/people questions.
+- "customer": Customer satisfaction, churn, retention, NPS, complaints. Use for customer experience questions.
+- "operations": Process optimization, efficiency, workflow analysis, quality. Use for operational questions.
+- "procurement": Inventory, supply chain, vendor analysis, purchasing, stock levels. Use for procurement/supply questions.
 
 CRITICAL PIPELINE RULES:
-1. If user asks about documents AND wants analysis/report, plan MULTIPLE agents in sequence:
-   - "search for X and analyze it" → ["search", "analyst"]
-   - "find info about X and generate a report" → ["search", "writer"]
-   - "research X and write a report" → ["search", "research", "writer"]
-   - "analyze the data and create a report" → ["search", "analyst", "writer"]
-2. If user asks about the COMPANY itself (not documents), use "profile":
-   - "tell me about our company" → ["profile"]
-   - "what products do we have" → ["profile"]
-   - "list our departments and analyze" → ["profile", "analyst"]
-   - "summarize our company and create a report" → ["profile", "writer"]
-3. Simple queries use ONE agent: greetings → ["chat"], SQL question → ["sql"]
-4. Always put "search" FIRST when document knowledge is needed, before analyst/writer/research
+1. For document-heavy questions, put "search" FIRST, then the domain agent: ["search", "analyst"] or ["search", "finance"]
+2. For business/strategic questions, route to the appropriate department agent directly: ["ceo"], ["finance"], ["sales"], etc.
+3. For questions spanning multiple domains, use a pipeline: ["finance", "ceo"] for deep financial-strategic analysis
+4. Simple queries use ONE agent: greetings → ["chat"], SQL question → ["sql"], company info → ["profile"]
 5. "writer" should typically be last (produces final output)
+6. "memory" should be first when user asks about past events or decisions
 
 Return valid JSON with "next_agents" (ordered list) and "reason" fields.
-Example: {"next_agents": ["search","analyst","writer"], "reason": "Need to find docs, analyze, then generate report"}"""
+Example: {"next_agents": ["finance","ceo"], "reason": "Financial analysis then strategic assessment"}"""
 
 _route_prompt = ChatPromptTemplate.from_messages([
     ("system", ROUTE_SYSTEM_PROMPT),
@@ -134,6 +134,13 @@ async def supervisor_node(state: AgentState) -> dict:
         search_kw = ["search", "find", "document", "knowledge"]
         profile_kw = ["company", "department", "employee", "product", "our ", "we have", "tell me about", "who works", "what are our", "list our", "org chart"]
         memory_kw = ["remember", "memory", "past", "history", "decision", "decided", "previous", "before", "recall", "what happened"]
+        finance_kw = ["revenue", "profit", "budget", "cost", "cashflow", "financial", "finance", "margin", "expense", "income", "roi"]
+        hr_kw = ["hiring", "headcount", "recruit", "hr", "workforce", "staff", "team structure", "salary", "compensation"]
+        sales_kw = ["sales", "pipeline", "revenue growth", "customer acquisition", "pricing", "discount", "deal"]
+        ceo_kw = ["strategy", "strategic", "growth", "market", "risk", "overall", "business health", "enterprise", "vision", "roadmap"]
+        customer_kw = ["customer satisf", "churn", "nps", "retention", "complaint", "feedback", "loyalty"]
+        operations_kw = ["efficiency", "process", "workflow", "optimization", "bottleneck", "quality", "throughput"]
+        procurement_kw = ["inventory", "supply chain", "vendor", "supplier", "purchasing", "procurement", "stock", "reorder"]
 
         # Build pipeline based on keyword combinations
         pipeline = []
@@ -143,6 +150,20 @@ async def supervisor_node(state: AgentState) -> dict:
             pipeline.append("profile")
         if any(kw in q for kw in search_kw):
             pipeline.append("search")
+        if any(kw in q for kw in ceo_kw):
+            pipeline.append("ceo")
+        if any(kw in q for kw in finance_kw):
+            pipeline.append("finance")
+        if any(kw in q for kw in sales_kw):
+            pipeline.append("sales")
+        if any(kw in q for kw in hr_kw):
+            pipeline.append("hr")
+        if any(kw in q for kw in customer_kw):
+            pipeline.append("customer")
+        if any(kw in q for kw in operations_kw):
+            pipeline.append("operations")
+        if any(kw in q for kw in procurement_kw):
+            pipeline.append("procurement")
         if any(kw in q for kw in sql_kw):
             pipeline.append("sql")
         if any(kw in q for kw in analyst_kw):
@@ -283,6 +304,106 @@ async def memory_node(state: AgentState) -> dict:
     }
 
 
+# ── Department Agent Nodes ──────────────────────────────
+
+async def ceo_node(state: AgentState) -> dict:
+    """CEO node - strategic analysis"""
+    logger.info("CEO Agent: strategic analysis")
+    from app.agents.ceo_agent import run_ceo_agent
+    result = await run_ceo_agent(
+        query=state.get("user_query", ""),
+        context_text=state.get("context_text", ""),
+    )
+    return {
+        "final_response": result.get("final_response", ""),
+        "agent_trace": result.get("agent_trace", ["ceo"]),
+    }
+
+
+async def finance_node(state: AgentState) -> dict:
+    """Finance node - financial analysis"""
+    logger.info("Finance Agent: financial analysis")
+    from app.agents.finance_agent import run_finance_agent
+    result = await run_finance_agent(
+        query=state.get("user_query", ""),
+        context_text=state.get("context_text", ""),
+    )
+    return {
+        "final_response": result.get("final_response", ""),
+        "agent_trace": result.get("agent_trace", ["finance"]),
+    }
+
+
+async def sales_node(state: AgentState) -> dict:
+    """Sales node - sales analysis"""
+    logger.info("Sales Agent: sales analysis")
+    from app.agents.sales_agent import run_sales_agent
+    result = await run_sales_agent(
+        query=state.get("user_query", ""),
+        context_text=state.get("context_text", ""),
+    )
+    return {
+        "final_response": result.get("final_response", ""),
+        "agent_trace": result.get("agent_trace", ["sales"]),
+    }
+
+
+async def hr_node(state: AgentState) -> dict:
+    """HR node - workforce analysis"""
+    logger.info("HR Agent: workforce analysis")
+    from app.agents.hr_agent import run_hr_agent
+    result = await run_hr_agent(
+        query=state.get("user_query", ""),
+        context_text=state.get("context_text", ""),
+    )
+    return {
+        "final_response": result.get("final_response", ""),
+        "agent_trace": result.get("agent_trace", ["hr"]),
+    }
+
+
+async def customer_node(state: AgentState) -> dict:
+    """Customer node - customer insights"""
+    logger.info("Customer Agent: customer analysis")
+    from app.agents.customer_agent import run_customer_agent
+    result = await run_customer_agent(
+        query=state.get("user_query", ""),
+        context_text=state.get("context_text", ""),
+    )
+    return {
+        "final_response": result.get("final_response", ""),
+        "agent_trace": result.get("agent_trace", ["customer"]),
+    }
+
+
+async def operations_node(state: AgentState) -> dict:
+    """Operations node - operations analysis"""
+    logger.info("Operations Agent: operations analysis")
+    from app.agents.operations_agent import run_operations_agent
+    result = await run_operations_agent(
+        query=state.get("user_query", ""),
+        context_text=state.get("context_text", ""),
+    )
+    return {
+        "final_response": result.get("final_response", ""),
+        "agent_trace": result.get("agent_trace", ["operations"]),
+    }
+
+
+async def procurement_node(state: AgentState) -> dict:
+    """Procurement node - supply chain analysis"""
+    logger.info("Procurement Agent: procurement analysis")
+    from app.agents.procurement_agent import run_procurement_agent
+    result = await run_procurement_agent(
+        query=state.get("user_query", ""),
+        context_text=state.get("context_text", ""),
+    )
+    return {
+        "final_response": result.get("final_response", ""),
+        "agent_trace": result.get("agent_trace", ["procurement"]),
+    }
+
+
 async def formatter_node(state: AgentState) -> dict:
     """Formatter node - finalize output"""
     agent_trace = state.get("agent_trace", [])
@@ -292,14 +413,17 @@ async def formatter_node(state: AgentState) -> dict:
 
 # ---- Routing Functions ----
 
-AGENT_NAMES = ("search", "chat", "research", "analyst", "writer", "sql", "profile", "memory")
+AGENT_NAMES = (
+    "search", "chat", "research", "analyst", "writer", "sql", "profile", "memory",
+    "ceo", "finance", "sales", "hr", "customer", "operations", "procurement",
+)
 
 
-def route_decision(state: AgentState) -> Literal["search", "chat", "research", "analyst", "writer", "sql", "profile", "memory"]:
+def route_decision(state: AgentState) -> str:
     next_agent = state.get("next_agent", "chat")
     if next_agent not in AGENT_NAMES:
         return "chat"
-    return next_agent  # type: ignore
+    return next_agent
 
 
 # ---- Graph Construction ----
@@ -318,6 +442,13 @@ def create_supervisor_graph() -> CompiledStateGraph:
     workflow.add_node("sql", sql_node)
     workflow.add_node("profile", profile_node)
     workflow.add_node("memory", memory_node)
+    workflow.add_node("ceo", ceo_node)
+    workflow.add_node("finance", finance_node)
+    workflow.add_node("sales", sales_node)
+    workflow.add_node("hr", hr_node)
+    workflow.add_node("customer", customer_node)
+    workflow.add_node("operations", operations_node)
+    workflow.add_node("procurement", procurement_node)
     workflow.add_node("formatter", formatter_node)
 
     workflow.set_entry_point("supervisor")

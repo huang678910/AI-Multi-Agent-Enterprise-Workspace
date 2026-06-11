@@ -9,6 +9,7 @@ from app.models.company import (
     Product, Customer, BusinessProcess, CompanyGoal, CompanyKPI,
 )
 from app.models.enterprise_memory import EnterpriseMemory, MemoryEvent
+from app.models.business_metrics import BusinessMetric
 
 __all__ = [
     "User",
@@ -29,4 +30,5 @@ __all__ = [
     "CompanyKPI",
     "EnterpriseMemory",
     "MemoryEvent",
+    "BusinessMetric",
 ]

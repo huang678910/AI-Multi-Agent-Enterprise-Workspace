@@ -313,14 +313,31 @@ class CompanyService:
         )
         return list(result.scalars().all())
 
+    def _calc_progress(self, current: float, target: float, direction: str) -> float:
+        """Calculate progress percentage.
+
+        - direction="higher" (越高越好): progress = (current/target)*100, capped at 100
+        - direction="lower" (越低越好): progress = (target/current)*100 when current > target, else 100
+        """
+        if not target or target == 0:
+            return 0
+        if direction == "lower":
+            if current <= target:
+                return 100  # Goal achieved (at or below target)
+            return round((target / current) * 100)
+        else:
+            # "higher" — default
+            return min(100, round((current / target) * 100))
+
     async def create_goal(self, data: GoalCreate) -> CompanyGoal:
         company = await self._get_company()
         # Auto-calculate progress from current/target if not explicitly set
         values = data.model_dump()
         if not values.get("progress_pct") and values.get("current_value") and values.get("target_value"):
-            target = values["target_value"]
-            if target and target > 0:
-                values["progress_pct"] = round((values["current_value"] / target) * 100)
+            direction = values.get("direction", "higher")
+            values["progress_pct"] = self._calc_progress(
+                values["current_value"], values["target_value"], direction
+            )
         goal = CompanyGoal(company_id=company.id, **values)
         self.db.add(goal)
         await self.db.flush()
@@ -333,11 +350,11 @@ class CompanyService:
         for k, v in update_dict.items():
             setattr(goal, k, v)
         # Recalculate progress if current or target changed
-        if "current_value" in update_dict or "target_value" in update_dict:
+        if "current_value" in update_dict or "target_value" in update_dict or "direction" in update_dict:
             cv = goal.current_value
             tv = goal.target_value
             if cv is not None and tv is not None and tv > 0:
-                goal.progress_pct = round((cv / tv) * 100)
+                goal.progress_pct = self._calc_progress(cv, tv, goal.direction)
         await self.db.flush()
         await self.db.refresh(goal)
         return goal

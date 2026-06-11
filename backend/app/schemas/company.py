@@ -275,6 +275,7 @@ class GoalCreate(BaseModel):
     target_value: float | None = None
     current_value: float | None = None
     progress_pct: float = 0
+    direction: str = "higher"  # "higher" = 越高越好, "lower" = 越低越好（如退货率、成本）
     start_date: date | None = None
     end_date: date | None = None
     status: str = "active"
@@ -287,6 +288,7 @@ class GoalUpdate(BaseModel):
     target_value: float | None = None
     current_value: float | None = None
     progress_pct: float | None = None
+    direction: str | None = None
     start_date: date | None = None
     end_date: date | None = None
     status: str | None = None
@@ -301,6 +303,7 @@ class GoalResponse(BaseModel):
     target_value: float | None = None
     current_value: float | None = None
     progress_pct: float
+    direction: str = "higher"
     start_date: date | None = None
     end_date: date | None = None
     status: str
